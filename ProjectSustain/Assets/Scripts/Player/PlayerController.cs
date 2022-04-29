@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
         Vector2 movementVector = movement.ReadValue<Vector2>();
         //Debug.Log(movementVector);
         // transform.position += new Vector3(movementVector.x, 0, movementVector.y) * playerSpeed;
-        Debug.Log(new Vector3(movementVector.x, 0, movementVector.y) * playerSpeed);
+        //Debug.Log(new Vector3(movementVector.x, 0, movementVector.y) * playerSpeed);
         playerRigidbody.AddForce(new Vector3(movementVector.x, 0, movementVector.y) * playerSpeed, ForceMode.Force);
     }
 
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log(context);
         Vector2 movementVector = context.ReadValue<Vector2>();
-        Debug.Log(movementVector);
+       // Debug.Log(movementVector);
         playerRigidbody.AddForce(new Vector3(movementVector.x, 0, movementVector.y) * playerSpeed, ForceMode.Force);
 
     }
