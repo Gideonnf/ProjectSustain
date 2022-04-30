@@ -17,12 +17,13 @@ public class PlayerController : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         playerRigidbody = GetComponent<Rigidbody>();
+        
         movement = playerInput.actions["Movement"];
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+       // playerInput.playerIndex
     }
 
     // Update is called once per frame
@@ -37,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
     public void Movement(InputAction.CallbackContext context)
     {
-        Debug.Log(context);
+        //Debug.Log(context);
         Vector2 movementVector = context.ReadValue<Vector2>();
        // Debug.Log(movementVector);
         playerRigidbody.AddForce(new Vector3(movementVector.x, 0, movementVector.y) * playerSpeed, ForceMode.Force);

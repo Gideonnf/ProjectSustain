@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerManager : SingletonBase<PlayerManager>
 {
@@ -10,6 +11,12 @@ public class PlayerManager : SingletonBase<PlayerManager>
     [Tooltip("List of players currently active")]
     public GameObject[] playerList;
 
+    PlayerInputManager inputManager;
+
+    private void Awake()
+    {
+        inputManager = GetComponent<PlayerInputManager>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +27,7 @@ public class PlayerManager : SingletonBase<PlayerManager>
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 
     /// <summary>
@@ -31,4 +38,16 @@ public class PlayerManager : SingletonBase<PlayerManager>
     {
 
     }
+
+    public void OnPlayerJoin()
+    {
+        Debug.Log("Player Joined");
+    }
+
+    public void OnPlayerLeave()
+    {
+        Debug.Log("Player Leaved");
+    }
 }
+
+
