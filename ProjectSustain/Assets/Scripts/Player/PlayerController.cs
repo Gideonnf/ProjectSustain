@@ -7,7 +7,7 @@ using UnityEngine.InputSystem.Utilities;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody playerRigidbody;
-    PlayerInput playerInput;
+    public PlayerInput playerInput;
     InputAction movement;
 
     [Tooltip("Speed of the player")]
@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
 
     public void Interact(InputAction.CallbackContext context)
     {
-        Debug.Log(context);
+        //Debug.Log(context);
         if (context.performed)
         {
             Debug.Log("Player Interacting");
