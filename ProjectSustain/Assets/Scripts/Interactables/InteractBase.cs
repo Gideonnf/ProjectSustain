@@ -8,26 +8,29 @@ public class InteractBase : MonoBehaviour
     [Tooltip("Time to interact")]
     public float interactTime = 2.0f;
 
-    bool interacting = false;
-    bool interactDone = false;
+    public bool interacting = false;
+    public bool interactDone = false;
 
-    float interactTimer = 0.0f;
+    public float interactTimer = 0.0f;
     GameObject playerReference;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         
     }
 
     // Update is called once per frame
-    void Update()
+   public virtual void Update()
     {
-        interactTimer += Time.deltaTime;
-        if (interactTimer > interactTime)
+        if (interacting)
         {
-            interactDone = true;
-            InteractEnd();
+            interactTimer += Time.deltaTime;
+            if (interactTimer > interactTime)
+            {
+                interactDone = true;
+                InteractEnd();
+            }
         }
     }
 

@@ -25,7 +25,7 @@ public class PlayerManager : SingletonBase<PlayerManager>
     [Tooltip("List of players currently active")]
     public List<PlayerObject> playerList = new List<PlayerObject>();
 
-    PlayerInputManager inputManager;
+    private PlayerInputManager inputManager;
 
     // For testing setting spawn on creating
     // Ideally will be handled by a scene management script instead of the player manager since spawn locations will

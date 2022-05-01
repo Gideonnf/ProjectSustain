@@ -6,9 +6,9 @@ using UnityEngine.InputSystem.Utilities;
 
 public class PlayerController : MonoBehaviour
 {
-    Rigidbody playerRigidbody;
+    private Rigidbody playerRigidbody;
     public PlayerInput playerInput;
-    InputAction movement;
+    private InputAction movement;
 
     [Tooltip("Speed of the player")]
     public float playerSpeed = 5.0f;
