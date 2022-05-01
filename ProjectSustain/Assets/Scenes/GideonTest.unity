@@ -168,9 +168,10 @@ GameObject:
   - component: {fileID: 119445138}
   - component: {fileID: 119445137}
   - component: {fileID: 119445136}
+  - component: {fileID: 119445142}
   m_Layer: 0
   m_Name: TestObject
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -282,6 +283,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &119445142
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119445135}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &431825580
 GameObject:
   m_ObjectHideFlags: 0
@@ -1156,13 +1170,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 325090743272778216, guid: 2fefd5216a512d945843192ccf87e1a4, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 325090743272778224, guid: 2fefd5216a512d945843192ccf87e1a4, type: 3}
       propertyPath: m_Name
       value: TestPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 325090743272778224, guid: 2fefd5216a512d945843192ccf87e1a4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 325090743272778228, guid: 2fefd5216a512d945843192ccf87e1a4, type: 3}
       propertyPath: m_RootOrder
