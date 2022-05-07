@@ -53,11 +53,17 @@ public class InteractBase : MonoBehaviour
             // Completed
             // Can call player object after done interacting
             // Example, if cutting vegetables, can pass in any values to tell the player that it has the cut vegetables
+            interactTimer = 0.0f;
         }
 
         playerReference = null;
         interacting = false;
         interactDone = false;
         //return;
+    }
+
+    public virtual void ResetRadial()
+    {
+        GetComponentInChildren<RadialBar>().ResetRadial();
     }
 }

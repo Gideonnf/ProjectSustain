@@ -43,4 +43,9 @@ public class RadialBar : MonoBehaviour
             }
         }
     }
+
+    public void ResetRadial()
+    {
+        radialImage.fillAmount = 0.0f;
+    }
 }
