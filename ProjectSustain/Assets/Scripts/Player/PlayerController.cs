@@ -89,9 +89,14 @@ public class PlayerController : MonoBehaviour
         {
             Vector2 rotationVector = context.ReadValue<Vector2>();
             //Debug.Log(rotationVector);
+            if (rotationVector != Vector2.zero)
+            {
+                lookDirection = new Vector3(rotationVector.x, 0, rotationVector.y);
+                Quaternion targetRotation = Quaternion.LookRotation(lookDirection, Vector3.up);
 
-            lookDirection = new Vector3(rotationVector.x, 0, rotationVector.y);
-            transform.rotation = Quaternion.LookRotation(lookDirection);
+                // transform.rotation = targetRotation;
+                transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 30 );
+            }
         }
     }
 
