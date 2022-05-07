@@ -7,8 +7,8 @@ using UnityEngine.InputSystem.Utilities;
 public class PlayerController : MonoBehaviour
 {
     public GameObject playerHand;
-
     public PlayerInput playerInput;
+
     private Rigidbody playerRigidbody;
     private InputAction movement;
     private Vector3 lookDirection;
@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public float playerSpeed = 5.0f;
 
     GameObject interactableObject = null;
+    [System.NonSerialized] public GameObject ingredientObject = null;
     
     private void Awake()
     {

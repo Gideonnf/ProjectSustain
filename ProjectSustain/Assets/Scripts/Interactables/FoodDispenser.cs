@@ -20,8 +20,19 @@ public class FoodDispenser : InteractBase
 
     public override void Interact(GameObject playerObject)
     {
-        base.Interact(playerObject);
-       //Debug.Log("test");
+        //base.Interact(playerObject);
+        //Debug.Log("test");
+        GameObject newIngredient;
+        playerReference = playerObject;
+        if (playerReference != null)
+        {
+            GameObject playerHands = playerReference.GetComponent<PlayerController>().playerHand;
+            newIngredient = Instantiate(foodObject, playerHands.transform);
+            newIngredient.transform.localPosition = new Vector3(0, 0, 0);
+            newIngredient.transform.localRotation = Quaternion.Euler(new Vector3(90.0f, 0.0f, 0.0f));
+
+            playerReference.GetComponent<PlayerController>().ingredientObject = newIngredient;
+        }
     }
 
     /// <summary>
@@ -38,8 +49,10 @@ public class FoodDispenser : InteractBase
             {
                 GameObject playerHands = playerReference.GetComponent<PlayerController>().playerHand;
                 newIngredient = Instantiate(foodObject, playerHands.transform);
-                foodObject.transform.position = new Vector3(0, 0, 0);
-                foodObject.transform.Rotate(90.0f, 0.0f, 0.0f, Space.World);
+                newIngredient.transform.position = new Vector3(0, 0, 0);
+                newIngredient.transform.localRotation = Quaternion.Euler(new Vector3(90.0f, 0.0f, 0.0f));
+
+                playerReference.GetComponent<PlayerController>().ingredientObject = newIngredient;
             }
 
             ResetRadial();
