@@ -12,7 +12,7 @@ public class InteractBase : MonoBehaviour
     public bool interactDone = false;
 
     public float interactTimer = 0.0f;
-    GameObject playerReference;
+    [System.NonSerialized] public GameObject playerReference;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -25,6 +25,7 @@ public class InteractBase : MonoBehaviour
     {
         if (interacting)
         {
+            //Debug.Log("is here");
             interactTimer += Time.deltaTime;
             if (interactTimer > interactTime)
             {
@@ -42,6 +43,9 @@ public class InteractBase : MonoBehaviour
        // return;
     }
 
+    /// <summary>
+    /// Inherit this function to change the way interactable react to players
+    /// </summary>
     public virtual void InteractEnd()
     {
         if (interactDone)
@@ -51,7 +55,9 @@ public class InteractBase : MonoBehaviour
             // Example, if cutting vegetables, can pass in any values to tell the player that it has the cut vegetables
         }
 
+        playerReference = null;
         interacting = false;
+        interactDone = false;
         //return;
     }
 }

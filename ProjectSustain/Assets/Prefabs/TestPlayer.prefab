@@ -103,7 +103,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &325090743272778231
 CapsuleCollider:
@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98f762ce449213b46a2d2541c82c2707, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHand: {fileID: 532743898611406000}
   playerInput: {fileID: 0}
   playerSpeed: 10
 --- !u!114 &325090743272778219
@@ -190,6 +191,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f78bd57a-7386-497a-b9cb-71c371b428e0
     m_ActionName: PlayerControl/Movement[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 325090743272778218}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Rotation
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 511b8189-a86c-4093-a83e-b2ed53b83594
+    m_ActionName: PlayerControl/Rotation[/XInputControllerWindows/rightStick,/XInputControllerWindows1/rightStick]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad1
   m_DefaultActionMap: PlayerControl
