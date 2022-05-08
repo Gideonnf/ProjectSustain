@@ -61,11 +61,15 @@ public class AIManager : SingletonBase<AIManager>
                         ListOfAgents[j].availability = false;
                         Debug.Log(ListOfAgents[j].aiName + " seats at " + TableManager.Instance.ListOfTables[i].tableName);
                         //AICustomer.MoveAgent();
-                        //return;
+                        break;
                     }
-                    else
+                    else if (ListOfAgents[j].availability == false && ListOfAgents.Count != j)
                     {
-                        Debug.Log("All agent is taken");
+                        Debug.Log(ListOfAgents[j].aiName + " is seated");
+                    }
+                    else if (ListOfAgents[j].availability == false && ListOfAgents.Count == j)
+                    {
+                        Debug.Log("All agent is seated");
                     }
                 }
             }
