@@ -24,10 +24,10 @@ public class AICustomer : MonoBehaviour
 
     void Update()
     {
-        //enteringNPC();
+        //MoveAgent();
     }
 
-    void enteringNPC()
+    void MoveAgent()
     {
         //Debug.Log("Test");
         
@@ -65,10 +65,5 @@ public class AICustomer : MonoBehaviour
                 }
             }
         }
-    }
-
-    void exitingNPC()
-    {
-        // if finish eating, leave restaurant
     }
 }
