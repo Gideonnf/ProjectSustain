@@ -23,7 +23,7 @@ public class RadialBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //TestManager.Instance.GetAvailPosition(gameObject);
     }
 
     // Update is called once per frame
