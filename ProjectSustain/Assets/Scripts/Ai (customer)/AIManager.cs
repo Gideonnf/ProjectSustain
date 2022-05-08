@@ -21,7 +21,6 @@ public class AI
 public class AIManager : SingletonBase<AIManager>
 {
     public List<AI> ListOfAgents = new List<AI>();
-    
 
     public override void Awake()
     {
@@ -40,9 +39,10 @@ public class AIManager : SingletonBase<AIManager>
         for (int i = 0; i < AiManager.transform.childCount; i++)
         {
             ListOfAgents.Add(new AI(AiManager.transform.GetChild(i).gameObject));
-            Debug.Log(AiManager.transform.GetChild(i).gameObject);
+            //Debug.Log(AiManager.transform.GetChild(i).gameObject);
         }
-        //GetAvailAgent(AiManager);
+
+        GetAvailAgent(AiManager);
     }
 
     public void GetAvailAgent(GameObject targetAgent)
