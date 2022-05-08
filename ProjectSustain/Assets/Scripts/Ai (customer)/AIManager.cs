@@ -20,10 +20,10 @@ public class AI
 
 public class AIManager : SingletonBase<AIManager>
 {
-    public AICustomer AICustomer;
-
     public List<AI> ListOfAgents = new List<AI>();
-    public bool moveAgent;
+    public Transform waitingPoint;
+    public bool moveAgent = false;
+    public bool overflow = false;
 
     public override void Awake()
     {
@@ -32,7 +32,6 @@ public class AIManager : SingletonBase<AIManager>
 
     public void Start()
     {
-        moveAgent = false;
         //LoadAgents();
         //Debug.Log("2");
     }
@@ -43,6 +42,7 @@ public class AIManager : SingletonBase<AIManager>
         for (int i = 0; i < AiManager.transform.childCount; i++)
         {
             ListOfAgents.Add(new AI(AiManager.transform.GetChild(i).gameObject));
+            //Debug.Log(ListOfAgents.Count);
             //Debug.Log(AiManager.transform.GetChild(i).gameObject);
         }
 
@@ -65,20 +65,34 @@ public class AIManager : SingletonBase<AIManager>
                         ListOfAgents[j].availability = false;
                         //Debug.Log(ListOfAgents[j].aiName + " seats at " + TableManager.Instance.ListOfTables[i].tableName);
                         moveAgent = true;
-                        AICustomer.MoveAgent(); //Causing Error
+                        ListOfAgents[j].ai.GetComponent<AICustomer>().MoveAgent(TableManager.Instance.ListOfTables[i].tablePosition);
+                        //Debug.Log(ListOfAgents[i].aiName + " moved");
                         moveAgent = false;
                         break;
                     }
                     else if (ListOfAgents[j].availability == false && ListOfAgents.Count == (j + 1))
                     {
                         moveAgent = false;
-                        Debug.Log("All agent is seated");
+                        //Debug.Log("All agent is seated");
                     }
                 }
             }
             else
             {
-                Debug.Log("All table is taken");
+                //Debug.Log("All table is taken");
+            }
+        }
+
+        if (TableManager.Instance.ListOfTables.Count < ListOfAgents.Count)
+        {
+            for (int i = TableManager.Instance.ListOfTables.Count; i < ListOfAgents.Count; i++)
+            {
+                moveAgent = true;
+                overflow = true;
+                Debug.Log(waitingPoint.transform.position);
+                ListOfAgents[i].ai.GetComponent<AICustomer>().MoveAgent(waitingPoint.transform);
+                moveAgent = false;
+                overflow = false;
             }
         }
     }

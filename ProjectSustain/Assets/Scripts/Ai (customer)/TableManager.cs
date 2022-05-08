@@ -5,6 +5,7 @@ using UnityEngine;
 public class Tables
 {
     public GameObject table;
+    public Transform tablePosition;
     public string tableName;
     public int tableID;
     public bool availability;
@@ -14,6 +15,7 @@ public class Tables
         table = Table;
         tableName = Table.GetComponent<Transform>().name;
         tableID = Table.GetComponent<Transform>().GetSiblingIndex();
+        tablePosition = Table.transform;
         availability = true;
     }
 }
@@ -31,11 +33,6 @@ public class TableManager : SingletonBase<TableManager>
     {
         LoadTables();
         //Debug.Log("1");
-    }
-
-    public void Update()
-    {
-        
     }
 
     public void LoadTables()
