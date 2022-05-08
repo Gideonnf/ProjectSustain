@@ -4,22 +4,23 @@ using UnityEngine.AI;
 
 public class AICustomer : MonoBehaviour
 {
+    AIManager AIManager;
     public GameObject tableTransform;
     public NavMeshAgent agent;
     public Rigidbody rbNPC;
 
-    int count;
-    int availableSeats;
+    //int count;
+    //int availableSeats;
 
-    private void Start()
+    public void Start()
     {
-        TableManager.Instance.LoadTables();
+        //TableManager.Instance.LoadTables();
         
         //availableSeats = TestManager.Instance.ListOfTables.Count;
-        availableSeats = tableTransform.GetComponent<Transform>().childCount;
+        //availableSeats = tableTransform.GetComponent<Transform>().childCount;
         rbNPC = GetComponent<Rigidbody>();
         //Debug.Log(availableSeats);
-        count = 1;
+        //count = 1;
     }
 
     void Update()
@@ -27,7 +28,7 @@ public class AICustomer : MonoBehaviour
         //MoveAgent();
     }
 
-    void MoveAgent()
+    public void MoveAgent()
     {
         if (AIManager.Instance.moveAgent)
         {
