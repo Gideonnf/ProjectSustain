@@ -29,9 +29,14 @@ public class TableManager : SingletonBase<TableManager>
 
     public void Start()
     {
+        
         LoadTables();
-        AIManager.Instance.LoadAgents();
         //Debug.Log("1");
+    }
+
+    public void Update()
+    {
+        
     }
 
     public void LoadTables()
@@ -43,6 +48,7 @@ public class TableManager : SingletonBase<TableManager>
             //Debug.Log(TableManager.transform.GetChild(i).gameObject);
         }
         GetAvailPosition(TableManager);
+        AIManager.Instance.LoadAgents();
     }
 
     public void GetAvailPosition(GameObject targetTable)
@@ -52,15 +58,20 @@ public class TableManager : SingletonBase<TableManager>
             //Debug.Log(ListOfTables.Count);
             //Debug.Log(ListOfTables[i].tableID);
             //Debug.Log(targetTable.transform.GetChild(i).GetSiblingIndex());
-            if (targetTable.transform.GetChild(i).GetSiblingIndex() == ListOfTables[i].tableID)
-            {
+            //if (targetTable.transform.GetChild(i).GetSiblingIndex() == ListOfTables[i].tableID)
+            //{
                 //Debug.Log(ListOfTables[i].tableName + " is " + ListOfTables[i].availability);
-                if (ListOfTables[i].availability)
-                {
-                    //Debug.Log(ListOfTables[i].availability);
-                    ListOfTables[i].availability = true;
-                }
+            if (ListOfTables[i].availability)
+            {
+                //Debug.Log(ListOfTables[i].availability);
+                ListOfTables[i].availability = true;
+                //Debug.Log(ListOfTables[i].tableName);
             }
+            else if (ListOfTables[i].availability == false)
+            {
+                Debug.Log("Full");
+            }
+            //}
         }
     }
 }

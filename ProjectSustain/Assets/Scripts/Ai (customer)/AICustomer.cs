@@ -14,6 +14,7 @@ public class AICustomer : MonoBehaviour
     private void Start()
     {
         TableManager.Instance.LoadTables();
+        
         //availableSeats = TestManager.Instance.ListOfTables.Count;
         availableSeats = tableTransform.GetComponent<Transform>().childCount;
         rbNPC = GetComponent<Rigidbody>();
@@ -23,7 +24,7 @@ public class AICustomer : MonoBehaviour
 
     void Update()
     {
-        enteringNPC();
+        //enteringNPC();
     }
 
     void enteringNPC()

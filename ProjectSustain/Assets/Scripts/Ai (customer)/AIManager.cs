@@ -21,6 +21,7 @@ public class AI
 public class AIManager : SingletonBase<AIManager>
 {
     public List<AI> ListOfAgents = new List<AI>();
+    
 
     public override void Awake()
     {
@@ -35,29 +36,32 @@ public class AIManager : SingletonBase<AIManager>
 
     public void LoadAgents()
     {
-        GameObject AIManager = GameObject.FindGameObjectWithTag("NPC");
-        for (int i = 0; i < AIManager.transform.childCount; i++)
+        GameObject AiManager = GameObject.FindGameObjectWithTag("NPC");
+        for (int i = 0; i < AiManager.transform.childCount; i++)
         {
-            ListOfAgents.Add(new AI(AIManager.transform.GetChild(i).gameObject));
+            ListOfAgents.Add(new AI(AiManager.transform.GetChild(i).gameObject));
             //Debug.Log(AIManager.transform.GetChild(i).gameObject);
         }
-        GetAvailAgent(AIManager);
+        GetAvailAgent(AiManager);
     }
 
     public void GetAvailAgent(GameObject targetAgent)
     {
         for (int i = 0; i < TableManager.Instance.ListOfTables.Count; i++)
         {
+            //Debug.Log(TableManager.Instance.ListOfTables.Count);
             if (TableManager.Instance.ListOfTables[i].availability)
             {
                 for (int j = 0; i < ListOfAgents.Count; j++)
                 {
+                    //Debug.Log(ListOfAgents.Count);
                     if (ListOfAgents[i].availability)
                     {
                         TableManager.Instance.ListOfTables[i].availability = false;
                         ListOfAgents[i].availability = false;
                         Debug.Log(ListOfAgents[j].aiName + " seats at " + TableManager.Instance.ListOfTables[i].tableName);
                         //AICustomer.MoveAgent();
+                        //return;
                     }
                     else
                     {
