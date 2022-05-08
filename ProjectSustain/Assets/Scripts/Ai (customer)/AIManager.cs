@@ -21,6 +21,7 @@ public class AI
 public class AIManager : SingletonBase<AIManager>
 {
     public List<AI> ListOfAgents = new List<AI>();
+    public bool moveAgent;
 
     public override void Awake()
     {
@@ -29,6 +30,7 @@ public class AIManager : SingletonBase<AIManager>
 
     public void Start()
     {
+        moveAgent = false;
         //LoadAgents();
         //Debug.Log("2");
     }
@@ -59,12 +61,15 @@ public class AIManager : SingletonBase<AIManager>
                     {
                         TableManager.Instance.ListOfTables[i].availability = false;
                         ListOfAgents[j].availability = false;
-                        Debug.Log(ListOfAgents[j].aiName + " seats at " + TableManager.Instance.ListOfTables[i].tableName);
+                        //Debug.Log(ListOfAgents[j].aiName + " seats at " + TableManager.Instance.ListOfTables[i].tableName);
+                        moveAgent = true;
                         //AICustomer.MoveAgent();
+                        moveAgent = false;
                         break;
                     }
                     else if (ListOfAgents[j].availability == false && ListOfAgents.Count == (j + 1))
                     {
+                        moveAgent = false;
                         Debug.Log("All agent is seated");
                     }
                 }

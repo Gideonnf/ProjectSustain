@@ -29,6 +29,10 @@ public class AICustomer : MonoBehaviour
 
     void MoveAgent()
     {
+        if (AIManager.Instance.moveAgent)
+        {
+            Debug.Log("moved");
+        }
         //Debug.Log("Test");
         
         //if (availableSeats > 0)
