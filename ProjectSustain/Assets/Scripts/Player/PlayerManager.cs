@@ -33,8 +33,10 @@ public class PlayerManager : SingletonBase<PlayerManager>
     // be different depending on map, scene, etc
     public List<Transform> ListOfSpawns = new List<Transform>();
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
+
         inputManager = GetComponent<PlayerInputManager>();
     }
 

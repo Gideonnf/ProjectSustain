@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5805430493784174306}
   - component: {fileID: 5097277003480093276}
   m_Layer: 0
-  m_Name: mushroom
+  m_Name: Cucumber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6623a08562d19d84694d4ba0b7f38944, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 00f19d348b9dd3d4db3bc5afde15224b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,8 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   preparedSprite: {fileID: 21300000, guid: 98bd8c61cba95844daa42a1b03abf991, type: 3}
-  isPrepared: 0
-  cookedSprite: {fileID: 21300000, guid: 3facc9c827b063f409717e95e6979427, type: 3}
-  isCooked: 0
-  cookTime: 2
-  cookSpriteScale: {x: 0.25, y: 0.25, z: 0.25}
+  isPrepared: 1
+  cookedSprite: {fileID: 0}
+  isCooked: 1

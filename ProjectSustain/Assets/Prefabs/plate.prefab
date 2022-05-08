@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2569574015226608172
+--- !u!1 &7025468857407303533
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,52 +8,61 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4744723735115883590}
-  - component: {fileID: 5805430493784174306}
-  - component: {fileID: 5097277003480093276}
+  - component: {fileID: 7652928689296160215}
+  - component: {fileID: 6745109720927550066}
+  - component: {fileID: 8826921972064276152}
+  - component: {fileID: 8102315516967366468}
   m_Layer: 0
-  m_Name: mushroom
+  m_Name: plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4744723735115883590
+--- !u!4 &7652928689296160215
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2569574015226608172}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.367415, y: 0.367415, z: 0.367415}
+  m_GameObject: {fileID: 7025468857407303533}
+  m_LocalRotation: {x: 0.0008449265, y: 0.9994056, z: -0.000029136281, w: -0.03446331}
+  m_LocalPosition: {x: 3.1161623, y: 1.6906453, z: 0.7095251}
+  m_LocalScale: {x: 1.6187, y: 1.6187, z: 1.6187}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &5805430493784174306
-SpriteRenderer:
+--- !u!33 &6745109720927550066
+MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2569574015226608172}
+  m_GameObject: {fileID: 7025468857407303533}
+  m_Mesh: {fileID: 808474172911093344, guid: bf5912acc997fa642a242e361b1a9fc1, type: 3}
+--- !u!23 &8826921972064276152
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025468857407303533}
   m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
+  m_RayTracingMode: 2
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -66,7 +75,7 @@ SpriteRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -74,32 +83,18 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6623a08562d19d84694d4ba0b7f38944, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1.95, y: 2.05}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!114 &5097277003480093276
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8102315516967366468
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2569574015226608172}
+  m_GameObject: {fileID: 7025468857407303533}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17e46f568b6b0ce4bb81283d26de9387, type: 3}
+  m_Script: {fileID: 11500000, guid: a5826c50eabc3a147900d07bc4855d86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  preparedSprite: {fileID: 21300000, guid: 98bd8c61cba95844daa42a1b03abf991, type: 3}
-  isPrepared: 0
-  cookedSprite: {fileID: 21300000, guid: 3facc9c827b063f409717e95e6979427, type: 3}
-  isCooked: 0
-  cookTime: 2
-  cookSpriteScale: {x: 0.25, y: 0.25, z: 0.25}
+  ListOfIngredients: []
+  burgerPrefab: {fileID: 3446097247152214397, guid: 580649d765c181a4483e16720aa0ad48, type: 3}

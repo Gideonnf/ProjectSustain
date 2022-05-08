@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     GameObject interactableObject = null;
     [System.NonSerialized] public GameObject ingredientObject = null;
+    [System.NonSerialized] public GameObject plateObject = null;
     
     private void Awake()
     {
@@ -85,7 +86,7 @@ public class PlayerController : MonoBehaviour
 
     public void Rotation(InputAction.CallbackContext context)
     {
-        Debug.Log(context.phase);
+       // Debug.Log(context.phase);
         if (context.performed)
         {
             Vector2 rotationVector = context.ReadValue<Vector2>();
@@ -121,4 +122,5 @@ public class PlayerController : MonoBehaviour
 
         }
     }
+
 }
