@@ -20,7 +20,7 @@ public class AI
 
 public class AIManager : SingletonBase<AIManager>
 {
-    AICustomer AICustomer;
+    public AICustomer AICustomer;
 
     public List<AI> ListOfAgents = new List<AI>();
     public bool moveAgent;
@@ -65,7 +65,7 @@ public class AIManager : SingletonBase<AIManager>
                         ListOfAgents[j].availability = false;
                         //Debug.Log(ListOfAgents[j].aiName + " seats at " + TableManager.Instance.ListOfTables[i].tableName);
                         moveAgent = true;
-                        // AICustomer.MoveAgent(); Causing Error
+                        AICustomer.MoveAgent(); //Causing Error
                         moveAgent = false;
                         break;
                     }
