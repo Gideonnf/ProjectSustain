@@ -67,7 +67,7 @@ public class AIManager : SingletonBase<AIManager>
                     {
                         Debug.Log(ListOfAgents[j].aiName + " is seated");
                     }
-                    else if (ListOfAgents[j].availability == false && ListOfAgents.Count == j)
+                    else if (ListOfAgents[j].availability == false && ListOfAgents.Count == (j + 1))
                     {
                         Debug.Log("All agent is seated");
                     }
