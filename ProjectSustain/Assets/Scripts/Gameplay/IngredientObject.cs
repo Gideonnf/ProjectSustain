@@ -7,6 +7,8 @@ public class IngredientObject : MonoBehaviour
 {
     [System.NonSerialized] public Vector3 originalScale;
 
+    public string ingredient;
+
     public Sprite preparedSprite;
     public bool isPrepared = false;
 

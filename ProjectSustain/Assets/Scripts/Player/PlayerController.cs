@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     GameObject interactableObject = null;
     [System.NonSerialized] public GameObject ingredientObject = null;
+    [System.NonSerialized] public GameObject plateObject = null;
     
     private void Awake()
     {
@@ -121,4 +122,5 @@ public class PlayerController : MonoBehaviour
 
         }
     }
+
 }
