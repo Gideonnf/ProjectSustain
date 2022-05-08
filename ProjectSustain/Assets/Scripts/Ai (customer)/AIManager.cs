@@ -65,7 +65,7 @@ public class AIManager : SingletonBase<AIManager>
                         ListOfAgents[j].availability = false;
                         //Debug.Log(ListOfAgents[j].aiName + " seats at " + TableManager.Instance.ListOfTables[i].tableName);
                         moveAgent = true;
-                        AICustomer.MoveAgent();
+                        // AICustomer.MoveAgent(); Causing Error
                         moveAgent = false;
                         break;
                     }
