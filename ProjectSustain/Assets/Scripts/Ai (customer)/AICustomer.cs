@@ -4,40 +4,70 @@ using UnityEngine.AI;
 
 public class AICustomer : MonoBehaviour
 {
+    public GameObject tableTransform;
     public NavMeshAgent agent;
-    public Transform tables;
-    public List<Transform> points;
-    public Rigidbody rigidbody;
+    public Rigidbody rbNPC;
 
     int count;
     int availableSeats;
 
     private void Start()
     {
-        availableSeats = tables.childCount;
-        rigidbody = GetComponent<Rigidbody>();
-        count = 0;
+        TableManager.Instance.LoadTables();
+        //availableSeats = TestManager.Instance.ListOfTables.Count;
+        availableSeats = tableTransform.GetComponent<Transform>().childCount;
+        rbNPC = GetComponent<Rigidbody>();
+        //Debug.Log(availableSeats);
+        count = 1;
     }
 
     void Update()
     {
+        enteringNPC();
+    }
+
+    void enteringNPC()
+    {
+        //Debug.Log("Test");
+        
         if (availableSeats > 0)
         {
-            for (int i = 0; i < 2; i++)
+            if (count == 1)
             {
-                agent.SetDestination(tables.GetChild(i).position);
-                if (agent.velocity == Vector3.zero)
+                count--;
+                TableManager.Instance.GetAvailPosition(tableTransform);
+
+                for (int i = 0; i < availableSeats; i++)
                 {
-                    count++;
-                    if (count > 3)
-                        agent.isStopped = true;
+                    //Debug.Log(TestManager.Instance.ListOfTables[i].availability);
+                    if (TableManager.Instance.ListOfTables[i].availability)
+                    {
+                        TableManager.Instance.ListOfTables[i].availability = false;
+
+                        Debug.Log("Agent " + i + 1 + " is going table " + TableManager.Instance.ListOfTables[i].tableName);
+                        Debug.Log(TableManager.Instance.ListOfTables[i].tableName + " is set to " + TableManager.Instance.ListOfTables[i].availability);
+                        //agent.SetDestination(tableTransform.transform.GetChild(i).position);
+                        count = 1;
+
+                        return;
+                        //agent.SetDestination(gameObject.transform.GetChild(i).position);
+                        //Debug.Log("Table is taken: " + TestManager.Instance.ListOfTables[i].tableName);
+                        //Debug.Log(i);
+                        //Debug.Log(TestManager.Instance.ListOfTables[i].availability);
+                        //Debug.Log(gameObject.transform.GetChild(i).name);
+                    }
+                    else 
+                    {
+                        Debug.Log("Full house");
+                        // Wait outside restaurant
+                    }
                 }
-                else
-                {
-                    agent.isStopped = false;
-                    count = 0;
-                } 
             }
         }
+    }
+
+    void exitingNPC()
+    {
+        // if finish eating, leave restaurant
     }
 }

@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 5475930185137205391}
   - component: {fileID: 5475930185137205382}
   - component: {fileID: 5475930185137205387}
-  - component: {fileID: 5475930185137205384}
   m_Layer: 7
   m_Name: NSFCapsule
   m_TagString: Untagged
@@ -139,18 +138,3 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &5475930185137205384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5475930185137205425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4807832bd1cc994cadd6f1644539898, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rigidbody: {fileID: 5475930185137205382}
-  agent: {fileID: 5475930185137205387}
-  tables: {fileID: 0}

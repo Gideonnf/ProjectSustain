@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Interactable
   - Environment
+  - TableManager
+  - NPC
   layers:
   - Default
   - TransparentFX
