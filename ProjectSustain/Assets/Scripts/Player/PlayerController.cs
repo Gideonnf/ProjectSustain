@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
     public void Rotation(InputAction.CallbackContext context)
     {
-        Debug.Log(context.phase);
+       // Debug.Log(context.phase);
         if (context.performed)
         {
             Vector2 rotationVector = context.ReadValue<Vector2>();

@@ -28,31 +28,40 @@ public class CuttingBoard : InteractBase
         //Debug.Log("test");
         if (targetIngredient == null)
         {
-            targetIngredient = Instantiate(playerObject.GetComponent<PlayerController>().ingredientObject, cuttingBoard.transform);
-            targetIngredient.transform.localPosition = new Vector3(0, 0.05f, 0);
-            targetIngredient.transform.localRotation = Quaternion.Euler(new Vector3(90.0f, 0.0f, 0.0f));
             GameObject tempIngredient = playerObject.GetComponent<PlayerController>().ingredientObject;
-           // tempIngredient.transform.parent = null;
-            // playerObject.GetComponent<PlayerController>().ingredientObject = null;
-            Destroy(tempIngredient);
-            //Destroy(playerObject.GetComponent<PlayerController>().ingredientObject);
-            // targetIngredient.transform.parent = cuttingBoard.transform;
+            if (tempIngredient.GetComponent<IngredientObject>().isPrepared == false)
+            {
+                //targetIngredient = Instantiate(playerObject.GetComponent<PlayerController>().ingredientObject, cuttingBoard.transform);
+                targetIngredient = playerObject.GetComponent<PlayerController>().ingredientObject;
+                targetIngredient.transform.SetParent(cuttingBoard.transform);
+                targetIngredient.transform.localPosition = new Vector3(0, 0.05f, 0);
+                targetIngredient.transform.localRotation = Quaternion.Euler(new Vector3(90.0f, 0.0f, 0.0f));
+                // tempIngredient.transform.parent = null;
+                playerObject.GetComponent<PlayerController>().ingredientObject = null;
+                //Destroy(tempIngredient);
+                //Destroy(playerObject.GetComponent<PlayerController>().ingredientObject);
+                // targetIngredient.transform.parent = cuttingBoard.transform;
+            }
         }
         else
         {
             if (targetIngredient.GetComponent<IngredientObject>().isPrepared)
             {
-                // Pick up the ingredient aft preparing it
-                //GameObject newIngredient = 
-                // Transfer ingredient back to player's hand
-                targetIngredient.transform.SetParent(playerReference.GetComponent<PlayerController>().playerHand.transform);
-                targetIngredient.transform.localPosition = new Vector3(0, 0, 0);
-                targetIngredient.transform.localRotation = Quaternion.Euler(new Vector3(90.0f, 0.0f, 0.0f));
-                playerReference.GetComponent<PlayerController>().ingredientObject = targetIngredient;
-                
-                // Set back to null
-                playerReference = null;
-                targetIngredient = null;
+                if (playerReference.GetComponent<PlayerController>().ingredientObject == null)
+                {
+                    // Pick up the ingredient aft preparing it
+                    //GameObject newIngredient = 
+                    // Transfer ingredient back to player's hand
+                    targetIngredient.transform.SetParent(playerReference.GetComponent<PlayerController>().playerHand.transform);
+                    targetIngredient.transform.localPosition = new Vector3(0, 0, 0);
+                    targetIngredient.transform.localRotation = Quaternion.Euler(new Vector3(90.0f, 0.0f, 0.0f));
+                    playerReference.GetComponent<PlayerController>().ingredientObject = targetIngredient;
+
+                    // Set back to null
+                    playerReference = null;
+                    targetIngredient = null;
+                    interactDone = false;
+                }         
             }
             else
             {
