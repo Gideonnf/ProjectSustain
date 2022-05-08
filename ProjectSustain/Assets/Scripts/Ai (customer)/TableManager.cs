@@ -29,7 +29,6 @@ public class TableManager : SingletonBase<TableManager>
 
     public void Start()
     {
-        
         LoadTables();
         //Debug.Log("1");
     }

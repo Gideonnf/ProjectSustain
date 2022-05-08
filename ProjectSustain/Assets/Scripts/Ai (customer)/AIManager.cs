@@ -52,13 +52,13 @@ public class AIManager : SingletonBase<AIManager>
             //Debug.Log(TableManager.Instance.ListOfTables.Count);
             if (TableManager.Instance.ListOfTables[i].availability)
             {
-                for (int j = 0; i < ListOfAgents.Count; j++)
+                for (int j = 0; j < ListOfAgents.Count; j++)
                 {
                     //Debug.Log(ListOfAgents.Count);
-                    if (ListOfAgents[i].availability)
+                    if (ListOfAgents[j].availability)
                     {
                         TableManager.Instance.ListOfTables[i].availability = false;
-                        ListOfAgents[i].availability = false;
+                        ListOfAgents[j].availability = false;
                         Debug.Log(ListOfAgents[j].aiName + " seats at " + TableManager.Instance.ListOfTables[i].tableName);
                         //AICustomer.MoveAgent();
                         //return;
