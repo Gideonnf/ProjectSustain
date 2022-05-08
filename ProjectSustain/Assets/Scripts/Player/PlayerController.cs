@@ -6,14 +6,18 @@ using UnityEngine.InputSystem.Utilities;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody playerRigidbody;
+    public GameObject playerHand;
     public PlayerInput playerInput;
+
+    private Rigidbody playerRigidbody;
     private InputAction movement;
+    private Vector3 lookDirection;
 
     [Tooltip("Speed of the player")]
     public float playerSpeed = 5.0f;
 
     GameObject interactableObject = null;
+    [System.NonSerialized] public GameObject ingredientObject = null;
     
     private void Awake()
     {
@@ -39,7 +43,8 @@ public class PlayerController : MonoBehaviour
 
         // Checking for interactable objects infront of the player
         Vector3 origin = transform.position - new Vector3(0, 0.2f, 0);
-        Debug.DrawRay(origin, Vector3.forward * 2.0f, Color.green);
+        Vector3 forward = transform.TransformDirection(Vector3.forward);
+        Debug.DrawRay(origin, forward * 2.0f, Color.green);
         RaycastHit[] hit = Physics.RaycastAll(origin, transform.forward, 2.0f);
         // If theres objects it hit
         if (hit.Length > 0)
@@ -49,7 +54,7 @@ public class PlayerController : MonoBehaviour
                 // Interactable hit
                 if (i.collider.tag == "Interactable")
                 {
-                    Debug.Log("INTERACTABLE HIT");
+                   // Debug.Log("INTERACTABLE HIT");
                    // i.collider.gameObject.GetComponent<InteractBase>();
                     interactableObject = i.collider.gameObject;
                 }
@@ -78,6 +83,24 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void Rotation(InputAction.CallbackContext context)
+    {
+        Debug.Log(context.phase);
+        if (context.performed)
+        {
+            Vector2 rotationVector = context.ReadValue<Vector2>();
+            //Debug.Log(rotationVector);
+            if (rotationVector != Vector2.zero)
+            {
+                lookDirection = new Vector3(rotationVector.x, 0, rotationVector.y);
+                Quaternion targetRotation = Quaternion.LookRotation(lookDirection, Vector3.up);
+
+                // transform.rotation = targetRotation;
+                transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 30 );
+            }
+        }
+    }
+
     public void Interact(InputAction.CallbackContext context)
     {
         //Debug.Log(context);
@@ -86,14 +109,14 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Player Interacting");
             if (interactableObject != null)
             {
-                interactableObject.GetComponent<InteractBase>().interacting = true;
+                interactableObject.GetComponent<InteractBase>().Interact(gameObject);
             }
         }
         else if (context.canceled)
         {
             if (interactableObject != null)
             {
-                interactableObject.GetComponent<InteractBase>().interacting = false;
+                interactableObject.GetComponent<InteractBase>().InteractEnd();
             }
 
         }

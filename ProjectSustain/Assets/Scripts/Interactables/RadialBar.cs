@@ -23,7 +23,7 @@ public class RadialBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //TestManager.Instance.GetAvailPosition(gameObject);
     }
 
     // Update is called once per frame
@@ -42,5 +42,10 @@ public class RadialBar : MonoBehaviour
                 radialImage.fillAmount = interactBase.interactTimer / interactBase.interactTime;
             }
         }
+    }
+
+    public void ResetRadial()
+    {
+        radialImage.fillAmount = 0.0f;
     }
 }

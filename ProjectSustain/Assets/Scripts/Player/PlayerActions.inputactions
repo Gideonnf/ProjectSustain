@@ -11,13 +11,22 @@
                     "id": "c8bbfdcf-9ffb-4068-aef6-1c6ad22b81b3",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Hold(duration=0.3,pressPoint=0.4)",
+                    "interactions": "Hold(duration=0.3,pressPoint=0.4),Press",
                     "initialStateCheck": true
                 },
                 {
                     "name": "Movement",
                     "type": "Value",
                     "id": "f78bd57a-7386-497a-b9cb-71c371b428e0",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Rotation",
+                    "type": "Value",
+                    "id": "511b8189-a86c-4093-a83e-b2ed53b83594",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -90,6 +99,17 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "8b637c1d-9002-446a-86cc-c4d00a0b95f6",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

@@ -19,9 +19,13 @@ public class PlateDispenser : InteractBase
     public override void Interact(GameObject playerObject)
     {
         base.Interact(playerObject);
-
+        Debug.Log("test");
     }
 
+    /// <summary>
+    /// Override the base cause it'll have a unique end to interaction
+    /// compared to other interactables
+    /// </summary>
     public override void InteractEnd()
     {
         base.InteractEnd();

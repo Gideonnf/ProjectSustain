@@ -17,6 +17,7 @@ public class PlayerObject
         playerIndex = input.playerIndex;
     }
 }
+
 public class PlayerManager : SingletonBase<PlayerManager>
 {
     [Tooltip("The prefab of the player that will be created depending on players playing")]
