@@ -64,10 +64,10 @@ public class AIManager : SingletonBase<AIManager>
                         TableManager.Instance.ListOfTables[i].availability = false;
                         ListOfAgents[j].availability = false;
                         //Debug.Log(ListOfAgents[j].aiName + " seats at " + TableManager.Instance.ListOfTables[i].tableName);
-                        moveAgent = true;
+                        //moveAgent = true;
                         ListOfAgents[j].ai.GetComponent<AICustomer>().MoveAgent(TableManager.Instance.ListOfTables[i].tablePosition);
                        // Debug.Log(ListOfAgents[i].aiName + " moved");
-                        moveAgent = false;
+                        //moveAgent = false;
                         break;
                     }
                     //else if (ListOfAgents[j].availability == false && ListOfAgents.Count == (j + 1))
@@ -88,13 +88,13 @@ public class AIManager : SingletonBase<AIManager>
         {
             for (int i = TableManager.Instance.ListOfTables.Count; i < ListOfAgents.Count; i++)
             {
-                moveAgent = true;
-                overflow = true;
+               // moveAgent = true;
+              //  overflow = true;
               //  Debug.Log(waitingPoint.transform.position);
                 ListOfAgents[i].ai.GetComponent<AICustomer>().MoveAgent(waitingPoint.transform);
                // Debug.Log(ListOfAgents[i].aiName + " moved"); 
-                moveAgent = false;
-                overflow = false;
+              //  moveAgent = false;
+                //overflow = false;
             }
         }
     }

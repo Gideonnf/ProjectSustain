@@ -13,10 +13,10 @@ public class AICustomer : MonoBehaviour
 
     public void MoveAgent(Transform transform)
     {
-        if (AIManager.Instance.moveAgent)
-        {
+     //   if (AIManager.Instance.moveAgent)
+      //  {
             Debug.Log(transform.position);
             agent.SetDestination(transform.position);
-        }
+      //  }
     }
 }
