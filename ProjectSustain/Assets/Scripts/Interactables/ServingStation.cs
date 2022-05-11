@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ServingStation : InteractBase
 {
     GameObject plateObject;
+    public GameObject textObject;
     public override void Start()
     {
         base.Start();
