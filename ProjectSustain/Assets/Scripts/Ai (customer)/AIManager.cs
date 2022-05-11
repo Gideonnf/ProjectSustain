@@ -46,10 +46,10 @@ public class AIManager : SingletonBase<AIManager>
             //Debug.Log(AiManager.transform.GetChild(i).gameObject);
         }
 
-        GetAvailAgent(AiManager);
+        GetAvailAgent();
     }
 
-    public void GetAvailAgent(GameObject targetAgent)
+    public void GetAvailAgent()
     {
         for (int i = 0; i < TableManager.Instance.ListOfTables.Count; i++)
         {
@@ -66,31 +66,33 @@ public class AIManager : SingletonBase<AIManager>
                         //Debug.Log(ListOfAgents[j].aiName + " seats at " + TableManager.Instance.ListOfTables[i].tableName);
                         moveAgent = true;
                         ListOfAgents[j].ai.GetComponent<AICustomer>().MoveAgent(TableManager.Instance.ListOfTables[i].tablePosition);
-                        //Debug.Log(ListOfAgents[i].aiName + " moved");
+                       // Debug.Log(ListOfAgents[i].aiName + " moved");
                         moveAgent = false;
                         break;
                     }
-                    else if (ListOfAgents[j].availability == false && ListOfAgents.Count == (j + 1))
-                    {
-                        moveAgent = false;
-                        //Debug.Log("All agent is seated");
-                    }
+                    //else if (ListOfAgents[j].availability == false && ListOfAgents.Count == (j + 1))
+                    //{
+                    //    moveAgent = false;
+                    //    //Debug.Log("All agent is seated");
+                    //}
                 }
             }
-            else
-            {
-                //Debug.Log("All table is taken");
-            }
+            //else
+            //{
+            //    Debug.Log("All table is taken");
+            //}
         }
 
+        // Theres more agents then there are tables
         if (TableManager.Instance.ListOfTables.Count < ListOfAgents.Count)
         {
             for (int i = TableManager.Instance.ListOfTables.Count; i < ListOfAgents.Count; i++)
             {
                 moveAgent = true;
                 overflow = true;
-                Debug.Log(waitingPoint.transform.position);
+              //  Debug.Log(waitingPoint.transform.position);
                 ListOfAgents[i].ai.GetComponent<AICustomer>().MoveAgent(waitingPoint.transform);
+               // Debug.Log(ListOfAgents[i].aiName + " moved"); 
                 moveAgent = false;
                 overflow = false;
             }

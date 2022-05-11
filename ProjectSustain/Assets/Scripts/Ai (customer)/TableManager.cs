@@ -31,12 +31,7 @@ public class TableManager : SingletonBase<TableManager>
 
     public void Start()
     {
-        LoadTables();
-        //Debug.Log("1");
-    }
-
-    public void LoadTables()
-    {
+        
         GameObject TableManager = GameObject.FindGameObjectWithTag("TableManager");
         for (int i = 0; i < TableManager.transform.childCount; i++)
         {
@@ -45,7 +40,20 @@ public class TableManager : SingletonBase<TableManager>
         }
 
         GetAvailPosition(TableManager);
+        //Debug.Log("1");
+    }
+
+    public void LoadTables()
+    {
         AIManager.Instance.LoadAgents();
+    }
+
+    public void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            LoadTables();
+        }
     }
 
     public void GetAvailPosition(GameObject targetTable)
