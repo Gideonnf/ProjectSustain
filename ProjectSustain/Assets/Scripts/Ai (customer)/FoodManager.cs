@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class FoodItem
 {
+    public string name;
     public GameObject foodPrefab;
     // Different food will have different waiting time based on complexity
     public float waitingTime = 0.0f;

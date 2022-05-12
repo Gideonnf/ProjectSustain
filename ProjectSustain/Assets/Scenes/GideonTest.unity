@@ -2293,6 +2293,7 @@ GameObject:
   - component: {fileID: 740618036}
   - component: {fileID: 740618037}
   - component: {fileID: 740618038}
+  - component: {fileID: 740618039}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2396,6 +2397,29 @@ MonoBehaviour:
   ListOfSpawns:
   - {fileID: 2019702190}
   - {fileID: 51001364}
+--- !u!114 &740618039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740618035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffce50a1d83d1dd4b9c527905c17a3a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bDontDestroyOnLoad: 0
+  ListOfFood:
+  - name: Burger
+    foodPrefab: {fileID: 3446097247152214397, guid: 580649d765c181a4483e16720aa0ad48, type: 3}
+    waitingTime: 90
+    ingredientList:
+    - {fileID: 2569574015226608172, guid: b46ec3d4d926fa847819ed68209929ff, type: 3}
+    - {fileID: 2569574015226608172, guid: 6e8b870d70a69d54e8808e76179995f5, type: 3}
+    - {fileID: 2569574015226608172, guid: dfa0e5b1e102cd94c9a1ad01596ea41e, type: 3}
+    - {fileID: 2569574015226608172, guid: 55202d1248264aa4e90387fbbab04cfe, type: 3}
+    - {fileID: 2569574015226608172, guid: 5e6569c91608d684c9b9adaf27a2cccb, type: 3}
 --- !u!1001 &782563718
 PrefabInstance:
   m_ObjectHideFlags: 0
