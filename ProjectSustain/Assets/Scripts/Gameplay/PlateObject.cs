@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class PlateObject : MonoBehaviour
 {
-    public List<GameObject> ListOfIngredients = new List<GameObject>();
-    public GameObject burgerPrefab;
-    bool complete = false;
+    public List<IngredientItem> ListOfIngredients = new List<IngredientItem>();
+    public GameObject dishPrefab;
+    public Sprite dishSprite;
+    bool complete;
+    int ingredientCounter;
 
     float timer;
     // Start is called before the first frame update
     void Start()
     {
-
+        complete = false;
+        ingredientCounter = 0;
     }
 
     // Update is called once per frame
@@ -37,29 +40,55 @@ public class PlateObject : MonoBehaviour
         //    }
         //}
 
-        //if (complete == true)
-        //{
-        //    timer += Time.deltaTime;
-        //    if (timer > 1.0f)
-        //    {
-        //        GetComponentInParent<ServingStation>().textObject.SetActive(false);
+        if (complete == true)
+        {
+            timer += Time.deltaTime;
+            if (timer > 1.0f)
+            {
+                GetComponentInParent<ServingStation>().textObject.SetActive(false);
 
-        //    }
-        //}
+            }
+        }
     }
 
     public void AddToPlate(GameObject newIngredient)
     {
-        if (newIngredient != null)
+        if (newIngredient != null && complete == false)
         {
             // Make sure its prepared and cooked
             if (newIngredient.GetComponent<IngredientObject>().isCooked && newIngredient.GetComponent<IngredientObject>().isPrepared)
             {
-                newIngredient.transform.SetParent(transform);
-                newIngredient.transform.localPosition = new Vector3(0, 0.1f, 0);
-                newIngredient.transform.localRotation = Quaternion.Euler(new Vector3(90.0f, 0.0f, 0.0f));
-                ListOfIngredients.Add(newIngredient);
+                transform.GetChild(ListOfIngredients.Count).GetComponent<SpriteRenderer>().sprite = newIngredient.GetComponent<SpriteRenderer>().sprite;
+                ingredientCounter++;
+                // Destroy the ingredient
+                //Destroy(newIngredient);
+                IngredientItem ingredient = newIngredient.GetComponent<IngredientObject>().ingredientItem;
+                //newIngredient.transform.SetParent(transform);
+                //newIngredient.transform.localPosition = new Vector3(0, 0.1f, 0);
+                //newIngredient.transform.localRotation = Quaternion.Euler(new Vector3(90.0f, 0.0f, 0.0f));
+                ListOfIngredients.Add(ingredient);
 
+                dishSprite = FoodManager.Instance.CheckCompleteDish(ListOfIngredients);
+                if (dishSprite == null)
+                {
+                    // No dish was found
+                    complete = false;
+                }
+                else
+                {
+                    Debug.Log("Number of Ingredients" + ingredientCounter);
+                    for(int i = 0; i < ingredientCounter; ++i)
+                    {
+                        transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = null;
+                    }
+
+                    transform.GetChild(ingredientCounter).GetComponent<SpriteRenderer>().sprite = dishSprite;
+
+                    GetComponentInParent<ServingStation>().textObject.SetActive(true);
+                    complete = true;
+
+                }
+                Destroy(newIngredient);
             }
         }
     }

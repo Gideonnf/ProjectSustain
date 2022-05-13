@@ -3,15 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
+public class IngredientItem
+{
+    public string name;
+    public Sprite finishedSprite;
+
+    public IngredientItem(string name, Sprite Sprite)
+    {
+        this.name = name;
+        finishedSprite = Sprite;
+    }
+}
+
+[System.Serializable]
 public class FoodItem
 {
     public string name;
     public GameObject foodPrefab;
     // Different food will have different waiting time based on complexity
     public float waitingTime = 0.0f;
-    public List<GameObject> ingredientList = new List<GameObject>();
+    public List<IngredientItem> ingredientList = new List<IngredientItem>();
 
-    public FoodItem(GameObject foodPrefab, List<GameObject> ingredientList)
+    public FoodItem(GameObject foodPrefab, List<IngredientItem> ingredientList)
     {
         this.foodPrefab = foodPrefab;
         this.ingredientList = ingredientList;
@@ -48,5 +61,37 @@ public class FoodManager : SingletonBase<FoodManager>
         // For testing purposes
         // there is only 1 dish that can be returned
         return ListOfFood[0];
+    }
+
+    public Sprite CheckCompleteDish(List<IngredientItem> ingredientList)
+    {
+        // Loop through the food
+        foreach (FoodItem food in ListOfFood)
+        {
+            // First check the count of ingredients
+            // So that we dont make unneccesary loops
+
+            // If the ingredient list for that food item is equal to the ingredient list
+            if (food.ingredientList.Count == ingredientList.Count)
+            {
+                //Loop through the ingredient list given 
+                foreach (IngredientItem ingredient in ingredientList)
+                {
+                    // if the ingredient in the list doesnt exist in the food's ingredients
+                    // then it isnt that dish
+                    if (!food.ingredientList.Contains(ingredient))
+                    {
+                        // break out
+                        break;
+                    }
+                }
+
+                // If it made it here, means that the dish ingredients are the same
+                return food.foodPrefab.GetComponent<SpriteRenderer>().sprite;
+            }
+ 
+        }
+
+        return null;
     }
 }
