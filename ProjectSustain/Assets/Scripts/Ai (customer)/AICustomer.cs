@@ -6,6 +6,11 @@ public class AICustomer : MonoBehaviour
 {
     public NavMeshAgent agent;
     [System.NonSerialized] public FoodItem foodOrder = null;
+    bool isOrdering;
+
+    // TO NOTE
+    // Maybe changing customer timer from food based to customer based
+    // Allows for more dishes per customer instead of 1 dish 1 customer.
 
     void Update()
     {
@@ -23,6 +28,8 @@ public class AICustomer : MonoBehaviour
 
     public void GenerateOrder()
     {
+        isOrdering = true;
+
         if (foodOrder == null)
         {
             // Generate a order
@@ -30,6 +37,7 @@ public class AICustomer : MonoBehaviour
             if (newOrder != null)
             {
                 foodOrder = newOrder;
+                Debug.Log(foodOrder);
                 // Can enable a speech bubble ontop to show the food item
             }
             else
