@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Tables
 {
     public GameObject table;
@@ -33,11 +34,11 @@ public class TableManager : SingletonBase<TableManager>
     {
         
         GameObject TableManager = GameObject.FindGameObjectWithTag("TableManager");
-        for (int i = 0; i < TableManager.transform.childCount; i++)
-        {
-            ListOfTables.Add(new Tables(TableManager.transform.GetChild(i).gameObject));
-            //Debug.Log(TableManager.transform.GetChild(i).gameObject);
-        }
+        //for (int i = 0; i < TableManager.transform.childCount; i++)
+        //{
+        //    ListOfTables.Add(new Tables(TableManager.transform.GetChild(i).gameObject));
+        //    //Debug.Log(TableManager.transform.GetChild(i).gameObject);
+        //}
 
         GetAvailPosition(TableManager);
         //Debug.Log("1");
