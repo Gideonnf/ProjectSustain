@@ -34,10 +34,10 @@ public class TableManager : SingletonBase<TableManager>
     {
         GameObject TableManager = GameObject.FindGameObjectWithTag("TableManager");
 
-        for (int i = 0; i < TableManager.transform.childCount; i++)
-        {
-            ListOfTables.Add(new Tables(TableManager.transform.GetChild(i).gameObject));
-        }
+        //for (int i = 0; i < TableManager.transform.childCount; i++)
+        //{
+        //    ListOfTables.Add(new Tables(TableManager.transform.GetChild(i).gameObject));
+        //}
 
         GetAvailPosition(TableManager);
     }
@@ -59,23 +59,14 @@ public class TableManager : SingletonBase<TableManager>
     {
         for (int i = 0; i < ListOfTables.Count; i++)
         {
-            //Debug.Log(ListOfTables.Count);
-            //Debug.Log(ListOfTables[i].tableID);
-            //Debug.Log(targetTable.transform.GetChild(i).GetSiblingIndex());
-            //if (targetTable.transform.GetChild(i).GetSiblingIndex() == ListOfTables[i].tableID)
-            //{
-                //Debug.Log(ListOfTables[i].tableName + " is " + ListOfTables[i].availability);
             if (ListOfTables[i].availability)
             {
-                //Debug.Log(ListOfTables[i].availability);
                 ListOfTables[i].availability = true;
-                //Debug.Log(ListOfTables[i].tableName);
             }
             else if (ListOfTables[i].availability == false)
             {
                 Debug.Log("Full");
             }
-            //}
         }
     }
 }

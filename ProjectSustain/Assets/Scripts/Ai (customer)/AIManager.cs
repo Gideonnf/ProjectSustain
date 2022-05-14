@@ -20,18 +20,36 @@ public class AI
 
 public class AIManager : SingletonBase<AIManager>
 {
+    public AICustomer aICustomer;
     public List<AI> ListOfAgents = new List<AI>();
+    public Queue<Transform> queueAgents = new Queue<Transform>();
     public Transform waitingPoint;
-    public bool moveAgent = false;
-    public bool overflow = false;
+    public Transform exitPoint;
+    public Vector3 newPosition;
+    public Vector3 waitingPosition;
 
     public override void Awake()
     {
         base.Awake();
     }
 
-    public void Start()
+    public void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            CheckIfDone();
+        }
+    }
+
+    public void CheckIfDone()
+    {
+       foreach(AI ai in ListOfAgents)
+        {
+            if (ai.ai.GetComponent<AICustomer>().isFinished == false)
+            {
+                // go to exitpoint
+            }
+        }
     }
 
     public void LoadAgents()
@@ -49,7 +67,7 @@ public class AIManager : SingletonBase<AIManager>
     {
         for (int i = 0; i < TableManager.Instance.ListOfTables.Count; i++)
         {
-            Debug.Log(TableManager.Instance.ListOfTables.Count);
+            //Debug.Log(TableManager.Instance.ListOfTables.Count);
             if (TableManager.Instance.ListOfTables[i].availability)
             {
                 for (int j = 0; j < ListOfAgents.Count; j++)
@@ -60,8 +78,7 @@ public class AIManager : SingletonBase<AIManager>
                         TableManager.Instance.ListOfTables[i].availability = false;
                         ListOfAgents[j].availability = false;
                         //Debug.Log(ListOfAgents[j].aiName + " seats at " + TableManager.Instance.ListOfTables[i].tableName);
-                        ListOfAgents[j].ai.GetComponent<AICustomer>().MoveAgent(TableManager.Instance.ListOfTables[i].tablePosition);
-                        // Debug.Log(ListOfAgents[i].aiName + " moved");
+                        ListOfAgents[j].ai.GetComponent<AICustomer>().MoveAgent(TableManager.Instance.ListOfTables[i].tablePosition.position);
                         break;
                     }
                 }
@@ -71,14 +88,38 @@ public class AIManager : SingletonBase<AIManager>
         // Theres more agents then there are tables
         if (TableManager.Instance.ListOfTables.Count < ListOfAgents.Count)
         {
-            Debug.Log(TableManager.Instance.ListOfTables.Count);
             for (int i = TableManager.Instance.ListOfTables.Count; i < ListOfAgents.Count; i++)
             {
-                //Debug.Log(waitingPoint.transform.position);
-                //ListOfAgents[i].ai.GetComponent<AICustomer>().MoveAgent(waitingPoint.transform);
-                //Debug.Log(ListOfAgents[i].aiName + " moved"); 
+                queueAgents.Enqueue(ListOfAgents[i].ai.transform);
+                //Debug.Log(j);
+                //Debug.Log(i);
+                if (i == TableManager.Instance.ListOfTables.Count)
+                {
+                    //Debug.Log(i);
+                    ListOfAgents[i].ai.GetComponent<AICustomer>().MoveAgent(waitingPoint.position);
+                    //waitingPosition = ListOfAgents[i].ai.GetComponent<AICustomer>().agent.destination;
+                    //Debug.Log(ListOfAgents[i].ai.GetComponent<AICustomer>().agent.destination);
+                }
+                else
+                {
+                    //newPosition = waitingPoint.position - (new Vector3(2f, 0f, 0f) * (i - 2));
+                    newPosition = ListOfAgents[i - 1].ai.GetComponent<AICustomer>().agent.destination - new Vector3(4f, 0f, 0f); 
+                    ListOfAgents[i].ai.GetComponent<AICustomer>().MoveAgent(newPosition);
+                    //Debug.Log(newPosition);
+                    //Debug.Log(ListOfAgents[i].aiName);
+                    //Debug.Log(ListOfAgents[i].ai.GetComponent<AICustomer>().agent.destination);
+                    //Debug.Log(newPosition);
+                }
             }
+
+            //foreach (Transform i in queueAgents)
+            //{
+            //    Debug.Log(i.name);
+            //    Debug.Log(i.position.x);
+            //}
         }
     }
+
+    
 }
 

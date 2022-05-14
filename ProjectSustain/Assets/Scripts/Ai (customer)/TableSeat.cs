@@ -39,7 +39,7 @@ public class TableSeat : MonoBehaviour
                     if (collidable.collider.tag == "Table")
                     {
                         isSeatable = true;
-                        Debug.Log("Collided with table");
+                        //Debug.Log("Collided with table");
                         break;
                     }
                 }
@@ -49,7 +49,7 @@ public class TableSeat : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Colliding with " + other.name);
+        //Debug.Log("Colliding with " + other.name);
         // Can call AI here to start food ordering
         AICustomer ai = other.GetComponent<AICustomer>();
         ai.GenerateOrder();
