@@ -18,7 +18,14 @@ public class AICustomer : MonoBehaviour
         //MoveAgent();
     }
 
-    
+    public void MoveAgent(Vector3 vector3)
+    {
+        //   if (AIManager.Instance.moveAgent)
+        //  {
+        //Debug.Log(transform.position);
+        agent.SetDestination(vector3);
+        //  }
+    }
 
     public void GenerateOrder()
     {
