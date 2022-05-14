@@ -10,6 +10,10 @@ public class BookInteractions : MonoBehaviour
     public TextAsset textJSON;
     public List<string> entries;
     public dataFormat data;
+
+    public GameObject GlossaryObject;
+    public GameObject ContentObject;
+
     public TMP_Text title;
     public TMP_Text leftPageContent;
     public TMP_Text rightPageContent;
@@ -32,17 +36,32 @@ public class BookInteractions : MonoBehaviour
             title.text = JsonUtility.FromJson<dataFormat>(File.ReadAllText(file)).title;
             GameObject btnGlossary = Instantiate(GlossaryButton);
             btnGlossary.transform.parent = GlossaryButtonContainer;
+            GlossaryButton buttonScript = btnGlossary.GetComponent<GlossaryButton>();
+            buttonScript.filename = file;
+            buttonScript.title = JsonUtility.FromJson<dataFormat>(File.ReadAllText(file)).title;
+            buttonScript.interactions = this;
+            buttonScript.Init();
         }
     }
 
+    public void moveToEntry(string file)
+    {
+        GlossaryObject.SetActive(false);
+        ContentObject.SetActive(true);
+        data = JsonUtility.FromJson<dataFormat>(File.ReadAllText(file));
+        displayData(data, 0);
+    }
 
     public void moveToNextPage()
     {
         //unused unless theres newpage
     }
 
+
     public void returnToGlossary()
     {
+        GlossaryObject.SetActive(true);
+        ContentObject.SetActive(false);
 
     }
 
