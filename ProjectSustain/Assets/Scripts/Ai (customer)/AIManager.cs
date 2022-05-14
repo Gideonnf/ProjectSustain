@@ -32,8 +32,6 @@ public class AIManager : SingletonBase<AIManager>
 
     public void Start()
     {
-        //LoadAgents();
-        //Debug.Log("2");
     }
 
     public void LoadAgents()
@@ -42,8 +40,6 @@ public class AIManager : SingletonBase<AIManager>
         for (int i = 0; i < AiManager.transform.childCount; i++)
         {
             ListOfAgents.Add(new AI(AiManager.transform.GetChild(i).gameObject));
-            //Debug.Log(ListOfAgents.Count);
-            //Debug.Log(AiManager.transform.GetChild(i).gameObject);
         }
 
         GetAvailAgent();
@@ -53,7 +49,7 @@ public class AIManager : SingletonBase<AIManager>
     {
         for (int i = 0; i < TableManager.Instance.ListOfTables.Count; i++)
         {
-            //Debug.Log(TableManager.Instance.ListOfTables.Count);
+            Debug.Log(TableManager.Instance.ListOfTables.Count);
             if (TableManager.Instance.ListOfTables[i].availability)
             {
                 for (int j = 0; j < ListOfAgents.Count; j++)
@@ -64,37 +60,23 @@ public class AIManager : SingletonBase<AIManager>
                         TableManager.Instance.ListOfTables[i].availability = false;
                         ListOfAgents[j].availability = false;
                         //Debug.Log(ListOfAgents[j].aiName + " seats at " + TableManager.Instance.ListOfTables[i].tableName);
-                        //moveAgent = true;
                         ListOfAgents[j].ai.GetComponent<AICustomer>().MoveAgent(TableManager.Instance.ListOfTables[i].tablePosition);
-                       // Debug.Log(ListOfAgents[i].aiName + " moved");
-                        //moveAgent = false;
+                        // Debug.Log(ListOfAgents[i].aiName + " moved");
                         break;
                     }
-                    //else if (ListOfAgents[j].availability == false && ListOfAgents.Count == (j + 1))
-                    //{
-                    //    moveAgent = false;
-                    //    //Debug.Log("All agent is seated");
-                    //}
                 }
             }
-            //else
-            //{
-            //    Debug.Log("All table is taken");
-            //}
         }
 
         // Theres more agents then there are tables
         if (TableManager.Instance.ListOfTables.Count < ListOfAgents.Count)
         {
+            Debug.Log(TableManager.Instance.ListOfTables.Count);
             for (int i = TableManager.Instance.ListOfTables.Count; i < ListOfAgents.Count; i++)
             {
-               // moveAgent = true;
-              //  overflow = true;
-              //  Debug.Log(waitingPoint.transform.position);
-                ListOfAgents[i].ai.GetComponent<AICustomer>().MoveAgent(waitingPoint.transform);
-               // Debug.Log(ListOfAgents[i].aiName + " moved"); 
-              //  moveAgent = false;
-                //overflow = false;
+                //Debug.Log(waitingPoint.transform.position);
+                //ListOfAgents[i].ai.GetComponent<AICustomer>().MoveAgent(waitingPoint.transform);
+                //Debug.Log(ListOfAgents[i].aiName + " moved"); 
             }
         }
     }

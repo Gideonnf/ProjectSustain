@@ -32,16 +32,14 @@ public class TableManager : SingletonBase<TableManager>
 
     public void Start()
     {
-        
         GameObject TableManager = GameObject.FindGameObjectWithTag("TableManager");
-        //for (int i = 0; i < TableManager.transform.childCount; i++)
-        //{
-        //    ListOfTables.Add(new Tables(TableManager.transform.GetChild(i).gameObject));
-        //    //Debug.Log(TableManager.transform.GetChild(i).gameObject);
-        //}
+
+        for (int i = 0; i < TableManager.transform.childCount; i++)
+        {
+            ListOfTables.Add(new Tables(TableManager.transform.GetChild(i).gameObject));
+        }
 
         GetAvailPosition(TableManager);
-        //Debug.Log("1");
     }
 
     public void LoadTables()

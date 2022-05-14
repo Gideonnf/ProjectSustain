@@ -21,7 +21,7 @@ public class AICustomer : MonoBehaviour
     {
      //   if (AIManager.Instance.moveAgent)
       //  {
-            Debug.Log(transform.position);
+            //Debug.Log(transform.position);
             agent.SetDestination(transform.position);
       //  }
     }
