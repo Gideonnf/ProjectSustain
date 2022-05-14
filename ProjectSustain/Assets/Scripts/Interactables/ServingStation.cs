@@ -6,6 +6,8 @@ using TMPro;
 public class ServingStation : InteractBase
 {
     GameObject plateObject;
+    float timer;
+
     public GameObject textObject;
     public override void Start()
     {
@@ -16,6 +18,18 @@ public class ServingStation : InteractBase
     public override void Update()
     {
         base.Update();
+
+        if (plateObject != null)
+        {
+            if (plateObject.GetComponent<PlateObject>().complete == true)
+            {
+                timer += Time.deltaTime;
+                if (timer > 1.0f)
+                {
+                    textObject.SetActive(true);
+                }
+            }
+        }
     }
 
     public override void Interact(GameObject playerObject)
@@ -33,9 +47,13 @@ public class ServingStation : InteractBase
         {
             if (plateObject.GetComponent<PlateObject>().complete)
             {
-                plateObject = playerObject.GetComponent<PlayerController>().plateObject;
+                //plateObject = playerObject.GetComponent<PlayerController>().plateObject;
                 plateObject.transform.SetParent(playerObject.GetComponent<PlayerController>().playerHand.transform);
                 plateObject.transform.localPosition = new Vector3(0, 0, 0);
+                playerObject.GetComponent<PlayerController>().plateObject = plateObject;
+
+                plateObject = null;
+
                 //plateObject.transform.localRotation = Quaternion.Euler(new Vector3())
             }
             else if (playerObject.GetComponent<PlayerController>().ingredientObject != null)

@@ -11,7 +11,7 @@ public class PlateObject : MonoBehaviour
     public bool complete;
     int ingredientCounter;
 
-    float timer;
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -42,15 +42,15 @@ public class PlateObject : MonoBehaviour
         //    }
         //}
 
-        if (complete == true)
-        {
-            timer += Time.deltaTime;
-            if (timer > 1.0f)
-            {
-                GetComponentInParent<ServingStation>().textObject.SetActive(false);
+        //if (complete == true)
+        //{
+        //    timer += Time.deltaTime;
+        //    if (timer > 1.0f)
+        //    {
+        //       // GetComponentInParent<ServingStation>().textObject.SetActive(false);
 
-            }
-        }
+        //    }
+        //}
     }
 
     public void AddToPlate(GameObject newIngredient)
