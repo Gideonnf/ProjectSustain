@@ -8,6 +8,7 @@ public class AICustomer : MonoBehaviour
     public NavMeshAgent agent;
     [System.NonSerialized] public FoodItem foodOrder = null;
     [System.NonSerialized] public bool isFinished = false;
+    [System.NonSerialized] public bool isServed = false;
     public GameObject foodBubble;
     bool isOrdering;
     float timer;
@@ -59,6 +60,33 @@ public class AICustomer : MonoBehaviour
             {
                 // Shouldn't reach here
                 Debug.LogError("No order can be generated");
+            }
+        }
+    }
+
+    public void ServeCustomer(GameObject playerObject)
+    {
+        PlayerController playerRef = playerObject.GetComponent<PlayerController>();
+        // check for plate object
+        if (playerRef.plateObject != null)
+        {
+            if (playerRef.plateObject.GetComponent<PlateObject>().complete)
+            {
+                // Can make the AI sit down and eat for awhile
+                // or straight away leave the shop
+                // am doing the 2nd one first
+
+                GameObject plate = playerRef.plateObject;
+                playerRef.plateObject = null;
+
+                isServed = true;
+                isOrdering = false;
+                foodOrder = null;
+
+                foodBubble.SetActive(false);
+
+                Destroy(plate);
+
             }
         }
     }

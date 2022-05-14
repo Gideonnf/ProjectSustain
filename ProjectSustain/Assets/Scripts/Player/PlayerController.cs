@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public float playerSpeed = 5.0f;
 
     GameObject interactableObject = null;
+    GameObject interactableCustomer = null;
     [System.NonSerialized] public GameObject ingredientObject = null;
     [System.NonSerialized] public GameObject plateObject = null;
     
@@ -59,6 +60,12 @@ public class PlayerController : MonoBehaviour
                    // i.collider.gameObject.GetComponent<InteractBase>();
                     interactableObject = i.collider.gameObject;
                 }
+                
+                // Check for NPC collidable 
+                if (i.collider.tag == "NPC")
+                {
+                    interactableCustomer = i.collider.gameObject;
+                }
             }
         }
         else
@@ -72,6 +79,7 @@ public class PlayerController : MonoBehaviour
             }
             // Theres no object its colliding with
             interactableObject = null;
+            interactableCustomer = null;
         }
     }
 
@@ -108,7 +116,11 @@ public class PlayerController : MonoBehaviour
         if (context.performed)
         {
             Debug.Log("Player Interacting");
-            if (interactableObject != null)
+            if (interactableCustomer != null)
+            {
+                interactableCustomer.GetComponent<AICustomer>().ServeCustomer(gameObject);
+            }
+            else if (interactableObject != null)
             {
                 Debug.Log("Before" + ingredientObject);
                 Debug.Log("Before" + plateObject);

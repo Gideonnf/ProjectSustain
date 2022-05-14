@@ -54,7 +54,11 @@ public class TableSeat : MonoBehaviour
         AICustomer ai = other.GetComponent<AICustomer>();
         if (ai != null)
         {
-            ai.GenerateOrder();
+            // Only if they aren't serve yet
+            if (ai.isServed == false)
+            {
+                ai.GenerateOrder();
+            }
         }
     }
 }
