@@ -10,6 +10,7 @@ public class BookInteractions : MonoBehaviour
     public TextAsset textJSON;
     public List<string> entries;
     public dataFormat data;
+    public int currentPage;
 
     public GameObject GlossaryObject;
     public GameObject ContentObject;
@@ -18,6 +19,7 @@ public class BookInteractions : MonoBehaviour
     public TMP_Text leftPageContent;
     public TMP_Text rightPageContent;
 
+    public GameObject buttonNextPage;
     public Transform GlossaryButtonContainer;
     public GameObject GlossaryButton;
 
@@ -46,6 +48,7 @@ public class BookInteractions : MonoBehaviour
 
     public void moveToEntry(string file)
     {
+        currentPage = 0;
         GlossaryObject.SetActive(false);
         ContentObject.SetActive(true);
         data = JsonUtility.FromJson<dataFormat>(File.ReadAllText(file));
@@ -54,6 +57,8 @@ public class BookInteractions : MonoBehaviour
 
     public void moveToNextPage()
     {
+        currentPage++;
+        displayData(data, currentPage);
         //unused unless theres newpage
     }
 
@@ -88,6 +93,15 @@ public class BookInteractions : MonoBehaviour
         title.text = data.title;
         leftPageContent.text = data.datapages[page].leftcontent;
         rightPageContent.text = data.datapages[page].rightcontent;
+        
+        if(page == data.datapages.Length - 1)
+        {
+            buttonNextPage.SetActive(false);
+        }
+        else
+        {
+            buttonNextPage.SetActive(true);
+        }
     }
 
     public dataFormat loadJson(string file)
