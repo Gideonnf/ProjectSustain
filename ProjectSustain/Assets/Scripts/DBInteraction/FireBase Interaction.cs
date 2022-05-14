@@ -37,6 +37,33 @@ public class FireBaseInteraction : MonoBehaviour
         firestore.Document(playerpath).SetAsync(playerData);
     }
 
+    public int login(string key = null, string password = null)
+    {
+        if(key == null || password == null)
+        {
+            return -1;
+        }
+        var firestore = FirebaseFirestore.DefaultInstance;
+        firestore.Document(playerpath + key).GetSnapshotAsync().ContinueWithOnMainThread(task =>
+        {
+            Assert.IsNull(task.Exception);
+
+
+            var playerData = task.Result.ConvertTo<player_info>();
+            if (playerData.p_password == password)
+            {
+                return playerData.p_id;
+            }
+            else
+            {
+                return -1;
+            }
+
+        });
+        return -1;
+
+    }
+
 
     [FirestoreData]
     public struct player_progress
