@@ -110,7 +110,12 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Player Interacting");
             if (interactableObject != null)
             {
+                Debug.Log("Before" + ingredientObject);
+                Debug.Log("Before" + plateObject);
                 interactableObject.GetComponent<InteractBase>().Interact(gameObject);
+                Debug.Log("After" + ingredientObject);
+                Debug.Log("After" + plateObject);
+
             }
         }
         else if (context.canceled)

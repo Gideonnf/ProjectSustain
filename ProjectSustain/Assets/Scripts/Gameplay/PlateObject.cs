@@ -83,7 +83,7 @@ public class PlateObject : MonoBehaviour
                     }
 
                     transform.GetChild(ingredientCounter).GetComponent<SpriteRenderer>().sprite = dishSprite;
-
+                    transform.GetChild(ingredientCounter).gameObject.SetActive(true);
                     GetComponentInParent<ServingStation>().textObject.SetActive(true);
                     complete = true;
 

@@ -637,7 +637,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5475930185137205390, guid: 1b7cc540180ad924dbaca00de48a4f39, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10.08
+      value: -10.29
       objectReference: {fileID: 0}
     - target: {fileID: 5475930185137205390, guid: 1b7cc540180ad924dbaca00de48a4f39, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1610,6 +1610,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NSFCapsule (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5475930185137205425, guid: 1b7cc540180ad924dbaca00de48a4f39, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b7cc540180ad924dbaca00de48a4f39, type: 3}
 --- !u!4 &461713958 stripped
@@ -2541,8 +2545,19 @@ MonoBehaviour:
   ListOfFood:
   - name: Burger
     foodPrefab: {fileID: 3446097247152214397, guid: 580649d765c181a4483e16720aa0ad48, type: 3}
+    foodSprite: {fileID: 21300000, guid: 32c324766ed450b4e9fbf3db4301856b, type: 3}
     waitingTime: 90
-    ingredientList: []
+    ingredientList:
+    - name: Lettuce
+      finishedSprite: {fileID: 21300000, guid: 1cda706cec88c4441907a980e5ea4a0d, type: 3}
+    - name: Cucumber
+      finishedSprite: {fileID: 21300000, guid: 00f19d348b9dd3d4db3bc5afde15224b, type: 3}
+    - name: Tomato
+      finishedSprite: {fileID: 21300000, guid: 8b63e6118f428ba4fa585f920765d17d, type: 3}
+    - name: Mushroom
+      finishedSprite: {fileID: 21300000, guid: 3facc9c827b063f409717e95e6979427, type: 3}
+    - name: Bread
+      finishedSprite: {fileID: 21300000, guid: c5b21045bbe0398428bde39067f92cff, type: 3}
 --- !u!1 &746211995
 GameObject:
   m_ObjectHideFlags: 0
@@ -3300,10 +3315,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bDontDestroyOnLoad: 0
+  aICustomer: {fileID: 0}
   waitingPoint: {fileID: 961576764}
   exitPoint: {fileID: 0}
-  moveAgent: 0
-  overflow: 0
+  newPosition: {x: 0, y: 0, z: 0}
+  waitingPosition: {x: 0, y: 0, z: 0}
 --- !u!4 &1005372042
 Transform:
   m_ObjectHideFlags: 0
@@ -3344,7 +3360,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1458611078673007693, guid: b2cfa72924c664143b76ce86fd9721ac, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.355
+      value: 4.22
       objectReference: {fileID: 0}
     - target: {fileID: 1458611078673007693, guid: b2cfa72924c664143b76ce86fd9721ac, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3385,7 +3401,7 @@ PrefabInstance:
     - target: {fileID: 2248774185286067861, guid: b2cfa72924c664143b76ce86fd9721ac, type: 3}
       propertyPath: plateObject
       value: 
-      objectReference: {fileID: 7025468857407303533, guid: c3ea0c1a7f623b943af59ec6124a804e, type: 3}
+      objectReference: {fileID: 4526019754104687212, guid: 96638f59519cb1742800f32b884f9a82, type: 3}
     - target: {fileID: 2266955073193074423, guid: b2cfa72924c664143b76ce86fd9721ac, type: 3}
       propertyPath: m_Name
       value: PlateBlock
@@ -4207,6 +4223,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NSFCapsule (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5475930185137205425, guid: 1b7cc540180ad924dbaca00de48a4f39, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b7cc540180ad924dbaca00de48a4f39, type: 3}
 --- !u!4 &1536157303 stripped
@@ -4364,6 +4384,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 849c48738ab748542bf167a42e87d142, type: 3}
       propertyPath: m_Name
       value: fridge
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 849c48738ab748542bf167a42e87d142, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 849c48738ab748542bf167a42e87d142, type: 3}
@@ -4697,6 +4721,10 @@ PrefabInstance:
     - target: {fileID: 5475930185137205425, guid: 1b7cc540180ad924dbaca00de48a4f39, type: 3}
       propertyPath: m_Name
       value: NSFCapsule (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5475930185137205425, guid: 1b7cc540180ad924dbaca00de48a4f39, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b7cc540180ad924dbaca00de48a4f39, type: 3}
