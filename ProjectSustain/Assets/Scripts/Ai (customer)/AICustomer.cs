@@ -7,16 +7,11 @@ public class AICustomer : MonoBehaviour
     public NavMeshAgent agent;
     [System.NonSerialized] public FoodItem foodOrder = null;
     bool isOrdering;
-    public bool isFinished;
 
     // TO NOTE
     // Maybe changing customer timer from food based to customer based
     // Allows for more dishes per customer instead of 1 dish 1 customer.
 
-    public void Start()
-    {
-        isFinished = false;
-    }
 
     void Update()
     {
