@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.IO;
 using TMPro;
 
@@ -16,6 +17,7 @@ public class BookInteractions : MonoBehaviour
     public GameObject ContentObject;
 
     public TMP_Text title;
+    public Image leftPageImage;
     public TMP_Text leftPageContent;
     public TMP_Text rightPageContent;
 
@@ -93,8 +95,18 @@ public class BookInteractions : MonoBehaviour
         title.text = data.title;
         leftPageContent.text = data.datapages[page].leftcontent;
         rightPageContent.text = data.datapages[page].rightcontent;
-        
-        if(page == data.datapages.Length - 1)
+
+
+        if (File.Exists(data.datapages[page].imgpath))
+        {
+            Texture2D img = new Texture2D(2, 2);
+            img.LoadImage(File.ReadAllBytes(data.datapages[page].imgpath));
+            Sprite sprite = Sprite.Create(img, new Rect(0, 0, img.width, img.height), new Vector2(0, 0), 100.0f, 0, SpriteMeshType.Tight);
+            leftPageImage.sprite = sprite;
+
+        }
+
+        if (page == data.datapages.Length - 1)
         {
             buttonNextPage.SetActive(false);
         }
@@ -174,6 +186,7 @@ preparation of healthy baby foods.
     public class datapages
     {
         public string leftcontent;
+        public string imgpath;
         public string rightcontent;
     }
 
@@ -182,3 +195,4 @@ preparation of healthy baby foods.
 
 
 }
+
