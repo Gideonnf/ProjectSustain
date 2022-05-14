@@ -31,7 +31,14 @@ public class ServingStation : InteractBase
         }
         else
         {
-            if (playerObject.GetComponent<PlayerController>().ingredientObject != null)
+            if (plateObject.GetComponent<PlateObject>().complete)
+            {
+                plateObject = playerObject.GetComponent<PlayerController>().plateObject;
+                plateObject.transform.SetParent(playerObject.GetComponent<PlayerController>().playerHand.transform);
+                plateObject.transform.localPosition = new Vector3(0, 0, 0);
+                //plateObject.transform.localRotation = Quaternion.Euler(new Vector3())
+            }
+            else if (playerObject.GetComponent<PlayerController>().ingredientObject != null)
             {
                 plateObject.GetComponent<PlateObject>().AddToPlate(playerObject.GetComponent<PlayerController>().ingredientObject);
                 playerObject.GetComponent<PlayerController>().ingredientObject = null;

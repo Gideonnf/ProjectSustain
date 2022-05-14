@@ -7,7 +7,8 @@ public class PlateObject : MonoBehaviour
     public List<IngredientItem> ListOfIngredients = new List<IngredientItem>();
     public GameObject dishPrefab;
     public Sprite dishSprite;
-    bool complete;
+    public FoodItem currentFood;
+    public bool complete;
     int ingredientCounter;
 
     float timer;
@@ -15,6 +16,7 @@ public class PlateObject : MonoBehaviour
     void Start()
     {
         complete = false;
+        currentFood = null;
         ingredientCounter = 0;
     }
 
@@ -68,8 +70,8 @@ public class PlateObject : MonoBehaviour
                 //newIngredient.transform.localRotation = Quaternion.Euler(new Vector3(90.0f, 0.0f, 0.0f));
                 ListOfIngredients.Add(ingredient);
 
-                dishSprite = FoodManager.Instance.CheckCompleteDish(ListOfIngredients);
-                if (dishSprite == null)
+                currentFood = FoodManager.Instance.CheckCompleteDish(ListOfIngredients);
+                if (currentFood == null)
                 {
                     // No dish was found
                     complete = false;
@@ -82,7 +84,8 @@ public class PlateObject : MonoBehaviour
                         transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = null;
                     }
 
-                    transform.GetChild(ingredientCounter).GetComponent<SpriteRenderer>().sprite = dishSprite;
+
+                    transform.GetChild(ingredientCounter).GetComponent<SpriteRenderer>().sprite = currentFood.foodSprite;
                     transform.GetChild(ingredientCounter).gameObject.SetActive(true);
                     GetComponentInParent<ServingStation>().textObject.SetActive(true);
                     complete = true;

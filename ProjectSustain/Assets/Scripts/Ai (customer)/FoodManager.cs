@@ -65,7 +65,7 @@ public class FoodManager : SingletonBase<FoodManager>
         return ListOfFood[0];
     }
 
-    public Sprite CheckCompleteDish(List<IngredientItem> ingredientList)
+    public FoodItem CheckCompleteDish(List<IngredientItem> ingredientList)
     {
         // Loop through the food
         foreach (FoodItem food in ListOfFood)
@@ -89,7 +89,7 @@ public class FoodManager : SingletonBase<FoodManager>
                 }
 
                 // If it made it here, means that the dish ingredients are the same
-                return food.foodPrefab.GetComponent<SpriteRenderer>().sprite;
+                return food;
             }
  
         }
