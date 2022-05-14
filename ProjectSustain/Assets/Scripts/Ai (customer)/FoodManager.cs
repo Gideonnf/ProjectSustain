@@ -20,6 +20,7 @@ public class FoodItem
 {
     public string name;
     public GameObject foodPrefab;
+    public Sprite foodSprite;
     // Different food will have different waiting time based on complexity
     public float waitingTime = 0.0f;
     public List<IngredientItem> ingredientList = new List<IngredientItem>();
@@ -57,9 +58,10 @@ public class FoodManager : SingletonBase<FoodManager>
 
     public FoodItem GetFoodOrder()
     {
-        
+
         // For testing purposes
         // there is only 1 dish that can be returned
+        //FoodItem new = Instantiate(ListOfFood[0]);
         return ListOfFood[0];
     }
 

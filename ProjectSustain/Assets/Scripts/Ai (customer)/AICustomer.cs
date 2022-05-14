@@ -1,13 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class AICustomer : MonoBehaviour
 {
     public NavMeshAgent agent;
     [System.NonSerialized] public FoodItem foodOrder = null;
+    [System.NonSerialized] public bool isFinished = false;
+    public GameObject foodBubble;
     bool isOrdering;
-    public bool isFinished = false;
+    float timer;
 
     // TO NOTE
     // Maybe changing customer timer from food based to customer based
@@ -17,6 +20,14 @@ public class AICustomer : MonoBehaviour
     void Update()
     {
         //MoveAgent();
+        if (isOrdering && foodOrder != null)
+        {
+            timer += Time.deltaTime;
+            if (timer >= foodOrder.waitingTime)
+            {
+                // AI leaves
+            }
+        }
     }
 
     public void MoveAgent(Vector3 vector3)
@@ -39,8 +50,10 @@ public class AICustomer : MonoBehaviour
             if (newOrder != null)
             {
                 foodOrder = newOrder;
-                //Debug.Log(foodOrder);
+                Debug.Log(foodOrder.foodSprite);
                 // Can enable a speech bubble ontop to show the food item
+                foodBubble.SetActive(true);
+                foodBubble.transform.GetChild(0).GetComponent<Image>().sprite = foodOrder.foodSprite;
             }
             else
             {
