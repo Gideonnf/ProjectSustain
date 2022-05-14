@@ -6,40 +6,57 @@ using TMPro;
 
 public class BookInteractions : MonoBehaviour
 {
-    private static string jsondir = "Assets/Books";
+    private static string jsondir = "Books/json";
     public TextAsset textJSON;
-    public List<dataFormat> pages;
+    public List<string> entries;
     public dataFormat data;
     public TMP_Text title;
     public TMP_Text leftPageContent;
     public TMP_Text rightPageContent;
 
+    public Transform GlossaryButtonContainer;
+    public GameObject GlossaryButton;
+
     // Start is called before the first frame update
     void Start()
     {
         saveJson();
-        displayData(data, 0);
+        loadGlossary();
     }
 
     void loadGlossary()
     {
-        
+        importData();
+        foreach (string file in entries)
+        {
+            title.text = JsonUtility.FromJson<dataFormat>(File.ReadAllText(file)).title;
+            GameObject btnGlossary = Instantiate(GlossaryButton);
+            btnGlossary.transform.parent = GlossaryButtonContainer;
+        }
     }
 
 
     public void moveToNextPage()
+    {
+        //unused unless theres newpage
+    }
+
+    public void returnToGlossary()
     {
 
     }
 
     public void importData()
     {
-        pages.Clear();
-        DirectoryInfo dir = new DirectoryInfo(jsondir);
+        entries.Clear();
+        DirectoryInfo dir = new DirectoryInfo("Assets/Resources/"+jsondir);
         FileInfo[] files = dir.GetFiles();
         foreach (FileInfo file in files)
         {
-            pages.Add(loadJson(file.Directory + "/" + file.Name));
+            if (file.Extension == ".txt")
+            {
+                entries.Add(file.Directory+ @"\" + file.Name);
+            }
         }
     }
 
@@ -108,7 +125,7 @@ preparation of healthy baby foods.
         string json;
         json = JsonUtility.ToJson(data);
 
-        StreamWriter sw = new StreamWriter(jsondir+"/"+data.title+".txt", false);
+        StreamWriter sw = new StreamWriter("Assets/Resources/"+jsondir+"/"+data.title+".txt", false);
         sw.WriteLine(json);
         sw.Close();
     }
@@ -126,6 +143,7 @@ preparation of healthy baby foods.
         public string leftcontent;
         public string rightcontent;
     }
+
 
 
 
