@@ -8,6 +8,7 @@ using TMPro;
 public class BookInteractions : MonoBehaviour
 {
     private static string jsondir = "Books/json";
+    private static string imgdir = "Books/Images";
     public TextAsset textJSON;
     public List<string> entries;
     public dataFormat data;
@@ -97,13 +98,20 @@ public class BookInteractions : MonoBehaviour
         rightPageContent.text = data.datapages[page].rightcontent;
 
 
-        if (File.Exists(data.datapages[page].imgpath))
+        Debug.Log("Assets/Resources/" + data.datapages[page].imgpath + ".png");
+        if (File.Exists("Assets/Resources/" + data.datapages[page].imgpath + ".png"))
         {
-            Texture2D img = new Texture2D(2, 2);
+            Debug.Log("exists");
+            leftPageImage.sprite = Resources.Load<Sprite>(data.datapages[page].imgpath);
+            /*Texture2D img = new Texture2D(2, 2);
             img.LoadImage(File.ReadAllBytes(data.datapages[page].imgpath));
             Sprite sprite = Sprite.Create(img, new Rect(0, 0, img.width, img.height), new Vector2(0, 0), 100.0f, 0, SpriteMeshType.Tight);
-            leftPageImage.sprite = sprite;
+            leftPageImage.sprite = sprite;*/
 
+        }
+        else
+        {
+            Debug.Log("no img found");
         }
 
         if (page == data.datapages.Length - 1)
@@ -132,6 +140,7 @@ public class BookInteractions : MonoBehaviour
 Rich in antioxidants
 Low calories
 ";
+        pages.imgpath = imgdir + "/" + "Lettuce_slice";
         pages.rightcontent = @"A dieter's dream, romaine lettuce has about 8 calories and 1 to 2 grams of carbohydrates per cup .
 Although it's low in fiber, it's high in minerals, such as calcium, phosphorous, magnesium, and potassium.
 It's naturally low in sodium. Plus, romaine lettuce is packed with vitamin C, vitamin K, and folate
