@@ -10,7 +10,7 @@ public class AICustomer : MonoBehaviour
     [System.NonSerialized] public bool isFinished = false;
     [System.NonSerialized] public bool isServed = false;
     public GameObject foodBubble;
-    bool isOrdering;
+    [System.NonSerialized] public bool isOrdering;
     float timer;
 
     // TO NOTE
@@ -28,7 +28,10 @@ public class AICustomer : MonoBehaviour
             {
                 // AI leaves
             }
+
         }
+
+
     }
 
     public void MoveAgent(Vector3 vector3)
@@ -89,5 +92,16 @@ public class AICustomer : MonoBehaviour
 
             }
         }
+    }
+
+    public void SimulateFinish()
+    {
+        isServed = true;
+        isOrdering = false;
+        foodOrder = null;
+
+        foodBubble.SetActive(false);
+
+       // Destroy(plate);
     }
 }
