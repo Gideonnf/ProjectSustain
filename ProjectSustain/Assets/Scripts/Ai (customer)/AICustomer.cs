@@ -87,6 +87,7 @@ public class AICustomer : MonoBehaviour
                 foodOrder = null;
 
                 foodBubble.SetActive(false);
+                MoveAgent(AIManager.Instance.exitPoint.position);
 
                 Destroy(plate);
 

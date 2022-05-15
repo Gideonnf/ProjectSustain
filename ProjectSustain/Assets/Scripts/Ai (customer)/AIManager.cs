@@ -105,6 +105,10 @@ public class AIManager : SingletonBase<AIManager>
             }
         }
 
+        // NOTE
+        // this will probably cause an issue
+        // cause i == listoftables.count will never trigger anymore
+
         // Theres more agents then there are tables
         if (TableManager.Instance.ListOfTables.Count < ListOfAgents.Count)
         {
