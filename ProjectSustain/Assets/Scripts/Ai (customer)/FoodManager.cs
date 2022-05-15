@@ -7,6 +7,7 @@ public class IngredientItem
 {
     public string name;
     public Sprite finishedSprite;
+    public float wastageValue;
 
     public IngredientItem(string name, Sprite Sprite)
     {

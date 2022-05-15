@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerObject
 {
@@ -28,6 +29,10 @@ public class PlayerManager : SingletonBase<PlayerManager>
 
     public float gameTime = 0.0f;
     public GameObject controllableLight;
+    public GameObject bookObject;
+    public GameObject scoreObject;
+    public GameObject timeObject;
+    public float currentScore;
     Light lightRef;
     float gameTimer = 0.0f;
 
@@ -58,12 +63,14 @@ public class PlayerManager : SingletonBase<PlayerManager>
         float scaledTime = gameTimer / gameTime;
         Vector3 currentRGB = new Vector3(255, lightRef.color.g, lightRef.color.b);
         Color newColor = lightRef.color;
-        Debug.Log(scaledTime);
+        //Debug.Log(scaledTime);
         Vector3 newRGB = Vector3.Lerp(currentRGB, new Vector3(255, 0, 0), scaledTime * Time.deltaTime);
         newColor.g = newRGB.y;
         newColor.b = newRGB.z;
         lightRef.color = newColor;
 
+        float timeLeft = gameTime - gameTimer;
+        timeObject.GetComponent<TextMeshProUGUI>().text = "Time: " + timeLeft.ToString("F2");
     }
 
     /// <summary>
@@ -79,6 +86,13 @@ public class PlayerManager : SingletonBase<PlayerManager>
         // since the manager is a singleton
         input.transform.SetParent(transform);
         
+    }
+
+    public void AddScore(float score)
+    {
+        currentScore += score;
+        // update the score
+        scoreObject.GetComponent<TextMeshProUGUI>().text = "Score: " + currentScore.ToString();
     }
 
     public void OnPlayerJoin(PlayerInput input)
