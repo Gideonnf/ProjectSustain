@@ -39,7 +39,7 @@ public class ServingStation : InteractBase
             plateObject = playerObject.GetComponent<PlayerController>().plateObject;
             plateObject.transform.SetParent(transform);
             plateObject.transform.localPosition = new Vector3(0, 1.2f, 0);
-            plateObject.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            plateObject.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
 
             playerObject.GetComponent<PlayerController>().plateObject = null;
         }

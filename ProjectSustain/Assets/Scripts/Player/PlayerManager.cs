@@ -26,6 +26,11 @@ public class PlayerManager : SingletonBase<PlayerManager>
     [Tooltip("List of players currently active")]
     public List<PlayerObject> playerList = new List<PlayerObject>();
 
+    public float gameTime = 0.0f;
+    public GameObject controllableLight;
+    Light lightRef;
+    float gameTimer = 0.0f;
+
     private PlayerInputManager inputManager;
 
     // For testing setting spawn on creating
@@ -43,13 +48,22 @@ public class PlayerManager : SingletonBase<PlayerManager>
     // Start is called before the first frame update
     void Start()
     {
-        
+        lightRef = controllableLight.GetComponent<Light>();
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+        gameTimer += Time.deltaTime;
+        float scaledTime = gameTimer / gameTime;
+        Vector3 currentRGB = new Vector3(255, lightRef.color.g, lightRef.color.b);
+        Color newColor = lightRef.color;
+        Debug.Log(scaledTime);
+        Vector3 newRGB = Vector3.Lerp(currentRGB, new Vector3(255, 0, 0), scaledTime * Time.deltaTime);
+        newColor.g = newRGB.y;
+        newColor.b = newRGB.z;
+        lightRef.color = newColor;
+
     }
 
     /// <summary>
@@ -64,6 +78,7 @@ public class PlayerManager : SingletonBase<PlayerManager>
         // That way, the manager can drag the players between scenes
         // since the manager is a singleton
         input.transform.SetParent(transform);
+        
     }
 
     public void OnPlayerJoin(PlayerInput input)
