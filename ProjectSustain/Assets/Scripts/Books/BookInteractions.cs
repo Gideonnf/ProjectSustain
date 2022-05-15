@@ -125,41 +125,16 @@ public class BookInteractions : MonoBehaviour
     public void saveJson()
     {
         data = new dataFormat();
-        data.title = "Carrots";
+        data.title = "Lettuce";
 
         datapages pages = new datapages();
-        pages.leftcontent = @"- around 5 times of an adult’s 
-  recommended intake of Vitamin A(beta carotene)
-
-- High in Vitamin C, about 10 % of
-  daily recommended intake
-
-- Rich in copper, calcium, potassium, 
-  manganese, and phosphorus";
-        pages.rightcontent = @"Fresh carrots can be enjoyed as they are, 
-or can be used raw in vegetable as well as fruit salads.
-
-Its slices easily blend with other common
-root vegetables like radish, beets, kohlrabi, 
-turnips or with greens/ tomato in mixed salads.
-
-Carrot juice is a refreshing drink, 
-enjoyed either alone or with fruit/ vegetable juice.
-
-Carrots complement well with vegetables
-like green beans, potato, peas in variety
-of recipes either stewed, in curry, stir fries, etc.
-
-In South Asia, delicious and sweet dish,
-/""gaajar ka halwa,/"" is prepared using grated carrot,
-almonds, cashews, pistachio, butter, sugar, and milk.
-
-The root is also used in the
-preparation of cakes, tart,
-pudding, soups, borscht, etc.
-
-They are also employed in the
-preparation of healthy baby foods.
+        pages.leftcontent = @"High Fibre
+Rich in antioxidants
+Low calories
+";
+        pages.rightcontent = @"A dieter's dream, romaine lettuce has about 8 calories and 1 to 2 grams of carbohydrates per cup .
+Although it's low in fiber, it's high in minerals, such as calcium, phosphorous, magnesium, and potassium.
+It's naturally low in sodium. Plus, romaine lettuce is packed with vitamin C, vitamin K, and folate
 ";
 
         List<datapages> pagelist = new List<datapages>();
