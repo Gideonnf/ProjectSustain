@@ -61,4 +61,14 @@ public class TableSeat : MonoBehaviour
             }
         }
     }
-}
+
+    private void OnTriggerExit(Collider other)
+    {
+        AICustomer ai = other.GetComponent<AICustomer>();
+        if (ai != null)
+        {
+            TableManager.Instance.UpdateTable(gameObject);
+
+        }
+     }
+ }

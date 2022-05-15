@@ -69,4 +69,16 @@ public class TableManager : SingletonBase<TableManager>
             }
         }
     }
+
+    public void UpdateTable(GameObject ai)
+    {
+        for(int i = 0; i < ListOfTables.Count; ++i)
+        {
+            // If the AI is leaving that table
+            if (ListOfTables[i].table == ai)
+            {
+                ListOfTables[i].availability = true;
+            }
+        }
+    }
 }
