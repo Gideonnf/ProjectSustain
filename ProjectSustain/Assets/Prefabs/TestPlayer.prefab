@@ -21,7 +21,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &325090743272778228
 Transform:
   m_ObjectHideFlags: 0
@@ -207,6 +207,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 511b8189-a86c-4093-a83e-b2ed53b83594
     m_ActionName: PlayerControl/Rotation[/XInputControllerWindows/rightStick,/XInputControllerWindows1/rightStick]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 325090743272778218}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: UIBack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8d5e5d1e-b7e7-4bc2-8d6b-611a1c7210ab
+    m_ActionName: PlayerControl/UI[/XInputControllerWindows/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad1
   m_DefaultActionMap: PlayerControl

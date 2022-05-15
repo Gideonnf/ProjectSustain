@@ -140,4 +140,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void UIBack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        { 
+            // if active
+            if (PlayerManager.Instance.bookObject.activeSelf)
+            {
+                PlayerManager.Instance.bookObject.SetActive(false);
+            }
+        }
+    }
+
 }

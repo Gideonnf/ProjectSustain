@@ -27,6 +27,7 @@ public class AIManager : SingletonBase<AIManager>
     public Transform exitPoint;
     public Vector3 newPosition;
     public Vector3 waitingPosition;
+    public Vector3 exitPosition;
 
     public override void Awake()
     {
