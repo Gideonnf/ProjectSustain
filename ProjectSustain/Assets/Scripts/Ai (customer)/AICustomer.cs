@@ -102,6 +102,8 @@ public class AICustomer : MonoBehaviour
 
         foodBubble.SetActive(false);
 
+        MoveAgent(AIManager.Instance.exitPoint.position);
+
        // Destroy(plate);
     }
 }

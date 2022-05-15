@@ -78,7 +78,10 @@ public class TableManager : SingletonBase<TableManager>
             if (ListOfTables[i].table == ai)
             {
                 ListOfTables[i].availability = true;
+                break;
             }
         }
+
+        AIManager.Instance.GetAvailAgent();
     }
 }

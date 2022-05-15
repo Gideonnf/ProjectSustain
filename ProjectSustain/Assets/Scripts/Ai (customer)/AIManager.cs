@@ -20,14 +20,11 @@ public class AI
 
 public class AIManager : SingletonBase<AIManager>
 {
-    public AICustomer aICustomer;
     public List<AI> ListOfAgents = new List<AI>();
     public Queue<Transform> queueAgents = new Queue<Transform>();
     public Transform waitingPoint;
     public Transform exitPoint;
     public Vector3 newPosition;
-    public Vector3 waitingPosition;
-    public Vector3 exitPosition;
 
     public override void Awake()
     {
@@ -38,24 +35,48 @@ public class AIManager : SingletonBase<AIManager>
     {
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
-            CheckIfDone();
+            //CheckIfDone();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Backslash))
+        {
+            TestAIFinish();
         }
     }
 
-    public void CheckIfDone()
+    public void TestAIFinish()
     {
-       foreach(AI ai in ListOfAgents)
+        for (int i = 0; i < ListOfAgents.Count; ++i)
         {
-            if (ai.ai.GetComponent<AICustomer>().isFinished == false)
+            if (ListOfAgents[i].ai.GetComponent<AICustomer>().isOrdering)
             {
-                // go to exitpoint
+                ListOfAgents[i].ai.GetComponent<AICustomer>().SimulateFinish();
+                break;
             }
         }
     }
 
+    //public void CheckIfDone()
+    //{
+    //   foreach(AI ai in ListOfAgents)
+    //    {
+    //        if (ai.ai.GetComponent<AICustomer>().isFinished == false)
+    //        {
+    //            // go to exitpoint
+    //            ai.ai.GetComponent<AICustomer>().MoveAgent(exitPoint.position);
+                
+    //            GetAvailAgent();
+    //            queueAgents.Dequeue();
+    //        }
+    //    }
+    //}
+
+
+    
     public void LoadAgents()
     {
         GameObject AiManager = GameObject.FindGameObjectWithTag("NPC");
+
         for (int i = 0; i < AiManager.transform.childCount; i++)
         {
             ListOfAgents.Add(new AI(AiManager.transform.GetChild(i).gameObject));
@@ -68,12 +89,10 @@ public class AIManager : SingletonBase<AIManager>
     {
         for (int i = 0; i < TableManager.Instance.ListOfTables.Count; i++)
         {
-            //Debug.Log(TableManager.Instance.ListOfTables.Count);
             if (TableManager.Instance.ListOfTables[i].availability)
             {
                 for (int j = 0; j < ListOfAgents.Count; j++)
                 {
-                    //Debug.Log(ListOfAgents.Count);
                     if (ListOfAgents[j].availability)
                     {
                         TableManager.Instance.ListOfTables[i].availability = false;
@@ -91,28 +110,17 @@ public class AIManager : SingletonBase<AIManager>
         {
             for (int i = TableManager.Instance.ListOfTables.Count; i < ListOfAgents.Count; i++)
             {
-                queueAgents.Enqueue(ListOfAgents[i].ai.transform);
-                //Debug.Log(j);
-                //Debug.Log(i);
+                //queueAgents.Enqueue(ListOfAgents[i].ai.transform);
                 if (i == TableManager.Instance.ListOfTables.Count)
                 {
-                    //Debug.Log(i);
                     ListOfAgents[i].ai.GetComponent<AICustomer>().MoveAgent(waitingPoint.position);
-                    //waitingPosition = ListOfAgents[i].ai.GetComponent<AICustomer>().agent.destination;
-                    //Debug.Log(ListOfAgents[i].ai.GetComponent<AICustomer>().agent.destination);
                 }
                 else
                 {
-                    //newPosition = waitingPoint.position - (new Vector3(2f, 0f, 0f) * (i - 2));
                     newPosition = ListOfAgents[i - 1].ai.GetComponent<AICustomer>().agent.destination - new Vector3(4f, 0f, 0f); 
                     ListOfAgents[i].ai.GetComponent<AICustomer>().MoveAgent(newPosition);
-                    //Debug.Log(newPosition);
-                    //Debug.Log(ListOfAgents[i].aiName);
-                    //Debug.Log(ListOfAgents[i].ai.GetComponent<AICustomer>().agent.destination);
-                    //Debug.Log(newPosition);
                 }
             }
-
             //foreach (Transform i in queueAgents)
             //{
             //    Debug.Log(i.name);
