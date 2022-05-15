@@ -37,6 +37,12 @@ public class CookingStove : InteractBase
     public override void Start()
     {
         base.Start();
+
+        for (int i = 0; i < fryingPans.Count; ++i)
+        {
+            var em = fryingPans[i].fryingPan.GetComponentInChildren<ParticleSystem>().emission;
+            em.enabled = false;
+        }
     }
 
     // Update is called once per frame
@@ -45,17 +51,33 @@ public class CookingStove : InteractBase
         //base.Update();
         for (int i = 0; i < fryingPans.Count; ++i)
         {
-            // existing ingredient on it
-            if (fryingPans[i].targetIngredient != null)
+            // existing ingredient on it and it isnt burn already
+            if (fryingPans[i].targetIngredient != null && fryingPans[i].targetIngredient.GetComponent<IngredientObject>().isBurnt == false)
             {
                 fryingPans[i].cookTimer += Time.deltaTime;
                 // if the cook time is reached
-                if (fryingPans[i].cookTimer >= fryingPans[i].targetIngredient.GetComponent<IngredientObject>().cookTime)
+                if (fryingPans[i].targetIngredient.GetComponent<IngredientObject>().isCooked == false)
                 {
-                    if (fryingPans[i].targetIngredient.GetComponent<IngredientObject>().isCooked == false)
+                  if (fryingPans[i].cookTimer >= fryingPans[i].targetIngredient.GetComponent<IngredientObject>().cookTime)
+                  { 
+                    fryingPans[i].targetIngredient.GetComponent<IngredientObject>().isCooked = true;
+                    fryingPans[i].targetIngredient.GetComponent<SpriteRenderer>().sprite = fryingPans[i].targetIngredient.GetComponent<IngredientObject>().cookedSprite;
+                    fryingPans[i].cookTimer = 0.0f;
+                  }
+                }
+                // If it is already cooked
+                // check for burn time
+                else if(fryingPans[i].targetIngredient.GetComponent<IngredientObject>().isCooked)
+                {
+                    // is burnt
+                    if (fryingPans[i].cookTimer >= fryingPans[i].targetIngredient.GetComponent<IngredientObject>().burnTime)
                     {
-                        fryingPans[i].targetIngredient.GetComponent<IngredientObject>().isCooked = true;
-                        fryingPans[i].targetIngredient.GetComponent<SpriteRenderer>().sprite = fryingPans[i].targetIngredient.GetComponent<IngredientObject>().cookedSprite;
+                        fryingPans[i].targetIngredient.GetComponent<IngredientObject>().isCooked = false;
+                        fryingPans[i].targetIngredient.GetComponent<IngredientObject>().isBurnt = true;
+                        fryingPans[i].cookTimer = 0.0f;
+
+                        var em = fryingPans[i].fryingPan.GetComponentInChildren<ParticleSystem>().emission;
+                        em.enabled = true;
                     }
                 }
             }
@@ -103,9 +125,14 @@ public class CookingStove : InteractBase
                 if (playerReference.GetComponent<PlayerController>().ingredientObject == null)
                 {
                     // Cehck if they are done
-                    if (fryingPans[i].targetIngredient.GetComponent<IngredientObject>().isCooked == true)
+                    if (fryingPans[i].targetIngredient.GetComponent<IngredientObject>().isCooked == true || fryingPans[i].targetIngredient.GetComponent<IngredientObject>().isBurnt == true)
                     {
-                    
+                        if (fryingPans[i].targetIngredient.GetComponent<IngredientObject>().isBurnt == true)
+                        {
+                            var em = fryingPans[i].fryingPan.GetComponentInChildren<ParticleSystem>().emission;
+                            em.enabled = false;
+                        }
+
                         // attach back to player's hand
                         fryingPans[i].targetIngredient.transform.SetParent(playerReference.GetComponent<PlayerController>().playerHand.transform);
                         fryingPans[i].targetIngredient.transform.localPosition = new Vector3(0, 0, 0);
@@ -115,8 +142,10 @@ public class CookingStove : InteractBase
                         fryingPans[i].cookTimer = 0.0f;
                         fryingPans[i].isFree = true;
                         fryingPans[i].targetIngredient = null;
+
+                        
                     }
-                  
+
                     break;
                 }
             }

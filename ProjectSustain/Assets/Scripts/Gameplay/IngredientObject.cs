@@ -17,6 +17,9 @@ public class IngredientObject : MonoBehaviour
     public float cookTime = 0.0f;
     public Vector3 cookSpriteScale;
 
+    public bool isBurnt;
+    public float burnTime = 0.0f;
+
     public IngredientItem ingredientItem;
 
     // Start is called before the first frame update
