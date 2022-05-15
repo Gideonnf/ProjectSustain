@@ -110,15 +110,18 @@ public class AIManager : SingletonBase<AIManager>
         {
             for (int i = TableManager.Instance.ListOfTables.Count; i < ListOfAgents.Count; i++)
             {
-                //queueAgents.Enqueue(ListOfAgents[i].ai.transform);
-                if (i == TableManager.Instance.ListOfTables.Count)
+                if (ListOfAgents[i].availability)
                 {
-                    ListOfAgents[i].ai.GetComponent<AICustomer>().MoveAgent(waitingPoint.position);
-                }
-                else
-                {
-                    newPosition = ListOfAgents[i - 1].ai.GetComponent<AICustomer>().agent.destination - new Vector3(4f, 0f, 0f); 
-                    ListOfAgents[i].ai.GetComponent<AICustomer>().MoveAgent(newPosition);
+                    //queueAgents.Enqueue(ListOfAgents[i].ai.transform);
+                    if (i == TableManager.Instance.ListOfTables.Count)
+                    {
+                        ListOfAgents[i].ai.GetComponent<AICustomer>().MoveAgent(waitingPoint.position);
+                    }
+                    else
+                    {
+                        newPosition = ListOfAgents[i - 1].ai.GetComponent<AICustomer>().agent.destination - new Vector3(4f, 0f, 0f);
+                        ListOfAgents[i].ai.GetComponent<AICustomer>().MoveAgent(newPosition);
+                    }
                 }
             }
             //foreach (Transform i in queueAgents)
