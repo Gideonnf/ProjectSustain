@@ -97,7 +97,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e46f568b6b0ce4bb81283d26de9387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ingredient: 
   preparedSprite: {fileID: 21300000, guid: 98bd8c61cba95844daa42a1b03abf991, type: 3}
   isPrepared: 1
   cookedSprite: {fileID: 0}
   isCooked: 1
+  cookTime: 0
+  cookSpriteScale: {x: 0, y: 0, z: 0}
+  isBurnt: 0
+  burnTime: 0
+  ingredientItem:
+    name: Lettuce
+    finishedSprite: {fileID: 21300000, guid: 1cda706cec88c4441907a980e5ea4a0d, type: 3}
+    wastageValue: 92

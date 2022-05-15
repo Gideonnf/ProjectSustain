@@ -27,9 +27,8 @@ public class TrashInteractable : InteractBase
             {
                 GameObject ingredient = playerReference.GetComponent<PlayerController>().ingredientObject;
                 playerReference.GetComponent<PlayerController>().ingredientObject = null;
-                float newScore = 0;
-                newScore -= ingredient.GetComponent<IngredientObject>().ingredientItem.wastageValue;
-                PlayerManager.Instance.AddScore(newScore);
+
+                PlayerManager.Instance.RemoveScore(ingredient.GetComponent<IngredientObject>().ingredientItem.wastageValue);
                 Destroy(ingredient);
             }
         }

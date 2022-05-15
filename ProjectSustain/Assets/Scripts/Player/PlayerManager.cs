@@ -32,9 +32,15 @@ public class PlayerManager : SingletonBase<PlayerManager>
     public GameObject bookObject;
     public GameObject scoreObject;
     public GameObject timeObject;
+    public GameObject eventObjec;
     public float currentScore;
+
     Light lightRef;
     float gameTimer = 0.0f;
+    Color positiveColor;
+    Color negativeColor;
+    bool eventText = false;
+    float eventTimer = 0.0f;
 
     private PlayerInputManager inputManager;
 
@@ -54,6 +60,8 @@ public class PlayerManager : SingletonBase<PlayerManager>
     void Start()
     {
         lightRef = controllableLight.GetComponent<Light>();
+        positiveColor = scoreObject.GetComponent<TextMeshProUGUI>().color;
+        negativeColor = timeObject.GetComponent<TextMeshProUGUI>().color;
     }
 
     // Update is called once per frame
@@ -71,6 +79,16 @@ public class PlayerManager : SingletonBase<PlayerManager>
 
         float timeLeft = gameTime - gameTimer;
         timeObject.GetComponent<TextMeshProUGUI>().text = "Time: " + timeLeft.ToString("F2");
+
+        if (eventText)
+        {
+            eventTimer += Time.deltaTime;
+            if(eventTimer > 1.0f)
+            {
+                eventText = false;
+                eventObjec.SetActive(false);
+            }
+        }
     }
 
     /// <summary>
@@ -93,6 +111,21 @@ public class PlayerManager : SingletonBase<PlayerManager>
         currentScore += score;
         // update the score
         scoreObject.GetComponent<TextMeshProUGUI>().text = "Score: " + currentScore.ToString();
+        eventText = true;
+        eventObjec.SetActive(true);
+        eventObjec.GetComponent<TextMeshProUGUI>().color = positiveColor;
+        eventObjec.GetComponent<TextMeshProUGUI>().text = "CO2 Emission Prevented + 2.11kg";
+    }
+
+    public void RemoveScore(float score)
+    {
+        currentScore -= score;
+        scoreObject.GetComponent<TextMeshProUGUI>().text = "Score: " + currentScore.ToString();
+        eventText = true;
+        eventObjec.SetActive(true);
+        eventObjec.GetComponent<TextMeshProUGUI>().color = negativeColor;
+        eventObjec.GetComponent<TextMeshProUGUI>().text = "You have wasted " + score.ToString();
+
     }
 
     public void OnPlayerJoin(PlayerInput input)

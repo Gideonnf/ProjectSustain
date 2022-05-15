@@ -109,3 +109,4 @@ MonoBehaviour:
   ingredientItem:
     name: 
     finishedSprite: {fileID: 0}
+    wastageValue: 69.9

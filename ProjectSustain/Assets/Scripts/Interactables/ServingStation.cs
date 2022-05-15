@@ -21,14 +21,14 @@ public class ServingStation : InteractBase
 
         if (plateObject != null)
         {
-            if (plateObject.GetComponent<PlateObject>().complete == true)
-            {
-                timer += Time.deltaTime;
-                if (timer > 1.0f)
-                {
-                    textObject.SetActive(true);
-                }
-            }
+            //if (plateObject.GetComponent<PlateObject>().complete == true)
+            //{
+            //    timer += Time.deltaTime;
+            //    if (timer > 1.0f)
+            //    {
+            //        textObject.SetActive(false);
+            //    }
+            //}
         }
     }
 
