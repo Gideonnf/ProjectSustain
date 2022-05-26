@@ -24,7 +24,7 @@ public class CuttingBoard : InteractBase
 
     public override void Interact(GameObject playerObject)
     {
-        // base.Interact(playerObject);
+         //base.Interact(playerObject);
         //Debug.Log("test");
         if (targetIngredient == null)
         {
@@ -99,7 +99,7 @@ public class CuttingBoard : InteractBase
             }
         }
 
-       // playerReference = null;
+        //playerReference = null;
         interacting = false;
     }
 }

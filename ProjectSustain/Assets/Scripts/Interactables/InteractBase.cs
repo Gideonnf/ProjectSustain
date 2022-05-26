@@ -37,7 +37,13 @@ public class InteractBase : MonoBehaviour
 
     public virtual void Interact(GameObject playerObject)
     {
-        interacting = true;
+       // interacting = true;
+
+        //if (playerReference != null)
+        //{
+        //    if (playerReference != playerObject)
+        //        return;
+        //}
 
         playerReference = playerObject;
        // return;
