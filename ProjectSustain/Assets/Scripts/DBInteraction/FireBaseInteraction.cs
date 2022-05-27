@@ -20,7 +20,7 @@ public class FireBaseInteraction : MonoBehaviour
         {
             Assert.IsNull(task.Exception);
 
-            var playerData = task.Result.ConvertTo<player_info>();
+            var playerData = task.Result.ConvertTo<player_scores>();
 
             
         });
@@ -42,13 +42,13 @@ public class FireBaseInteraction : MonoBehaviour
     {
 
         var playerData = new player_scores();
-        playerData.p_id = 1;
+        playerData.p_id = 3;
         playerData.s_id = 1;
         playerData.s_level = 1;
         playerData.s_score = 1000;
 
         var firestore = FirebaseFirestore.DefaultInstance;
-        firestore.Document(playerpath).SetAsync(playerData);
+        firestore.Document(scorepath+"/"+playerData.p_id).SetAsync(playerData);
     }
 
     public int login(string key = null, string password = null)
