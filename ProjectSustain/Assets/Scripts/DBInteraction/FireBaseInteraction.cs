@@ -15,15 +15,25 @@ public class FireBaseInteraction : MonoBehaviour
     public void ReadData()
     {
         var firestore = FirebaseFirestore.DefaultInstance;
-
         firestore.Document(playerpath+key).GetSnapshotAsync().ContinueWithOnMainThread(task =>
         {
             Assert.IsNull(task.Exception);
 
             var playerData = task.Result.ConvertTo<player_scores>();
-
-            
         });
+    }
+
+    public async void getScoreboardData()
+    {
+        var firestore = FirebaseFirestore.DefaultInstance;
+        firestore.Collection("score").GetSnapshotAsync().ContinueWithOnMainThread(task =>
+        {
+            Assert.IsNull(task.Exception);
+
+            //task.Result.ConvertTo<List<player_scores>>();
+        });
+        //Query scoresQuery = firestore.Collection("scores");
+        //QuerySnapshot scoresQuerySnapshot = scoresQuery.GetSnapshotAsync();
     }
 
     public void WriteData()

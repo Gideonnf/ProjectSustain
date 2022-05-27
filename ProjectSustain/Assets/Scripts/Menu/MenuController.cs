@@ -9,10 +9,12 @@ public class MenuController : MonoBehaviour
     public GameObject optionsPosRot;
     public GameObject mainmenuPosRot;
     public GameObject prestartPosRot;
+    public GameObject leaderboardsPosRot;
 
     public GameObject mainmenuholder;
     public GameObject prestartmenuholder;
     public GameObject optionsmenuholder;
+    public GameObject leaderboardsmenuholder;
 
     public bool isLerping;
     public Transform lerpTo;
@@ -67,11 +69,19 @@ public class MenuController : MonoBehaviour
         prestartmenuholder.SetActive(true);
     }
 
+    public void onLeaderboardsButtonClicked()
+    {
+        isLerping = true;
+        lerpTo = leaderboardsPosRot.transform;
+        movespeed = 4;
+        rotspeed = 2;
+        prestartmenuholder.SetActive(true);
+    }
+
     public void onStartMultiplayer()
     {
 
     }
-
     public void onStartSinglePlayer()
     {
 
