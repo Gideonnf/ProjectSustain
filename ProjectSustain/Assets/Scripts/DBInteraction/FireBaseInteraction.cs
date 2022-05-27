@@ -11,6 +11,7 @@ public class FireBaseInteraction : MonoBehaviour
     public string playerpath = "players";
     public string scorepath = "scores";
     public string key = "key";
+
     public void ReadData()
     {
         var firestore = FirebaseFirestore.DefaultInstance;
@@ -32,6 +33,19 @@ public class FireBaseInteraction : MonoBehaviour
         playerData.p_name = "name";
         playerData.p_username = "username";
         playerData.p_password = "password";
+
+        var firestore = FirebaseFirestore.DefaultInstance;
+        firestore.Document(scorepath).SetAsync(playerData);
+    }
+
+    public void WriteScores()
+    {
+
+        var playerData = new player_scores();
+        playerData.p_id = 1;
+        playerData.s_id = 1;
+        playerData.s_level = 1;
+        playerData.s_score = 1000;
 
         var firestore = FirebaseFirestore.DefaultInstance;
         firestore.Document(playerpath).SetAsync(playerData);
@@ -81,6 +95,7 @@ public class FireBaseInteraction : MonoBehaviour
         public int pr_ingredient_progress { get; set; }
     }
 
+    [FirestoreData]
     public struct player_info
     {
         [FirestoreProperty]
@@ -96,6 +111,7 @@ public class FireBaseInteraction : MonoBehaviour
         public string p_password { get; set; }
     }
 
+    [FirestoreData]
     public struct player_scores
     {
         [FirestoreProperty]

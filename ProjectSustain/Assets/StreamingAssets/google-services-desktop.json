@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1036419602535",
+    "project_id": "project-sustain",
+    "storage_bucket": "project-sustain.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1036419602535:android:8c27fd58acf9a57ff91cc2",
+        "android_client_info": {
+          "package_name": "com.projectsustain.greenboys"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1036419602535-rb311djrv16ekcantg3vfr2pfq4l5d20.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACx3ffl8qOMsXwUrPZ43F2SbHthLTBbkY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1036419602535-rb311djrv16ekcantg3vfr2pfq4l5d20.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
