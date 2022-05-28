@@ -20,6 +20,10 @@ public class PlayerController : MonoBehaviour
     GameObject interactableCustomer = null;
     [System.NonSerialized] public GameObject ingredientObject = null;
     [System.NonSerialized] public GameObject plateObject = null;
+
+
+    bool hasScrolled = false;
+
     
     private void Awake()
     {
@@ -37,11 +41,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector2 movementVector = movement.ReadValue<Vector2>();
-        //Debug.Log(movementVector);
-        // transform.position += new Vector3(movementVector.x, 0, movementVector.y) * playerSpeed;
-        //Debug.Log(new Vector3(movementVector.x, 0, movementVector.y) * playerSpeed);
-        playerRigidbody.AddForce(new Vector3(movementVector.x, 0, movementVector.y) * playerSpeed, ForceMode.Force);
+        if (PlayerManager.Instance.InMenu == false)
+        {
+            Vector2 movementVector = movement.ReadValue<Vector2>();
+            //Debug.Log(movementVector);
+            // transform.position += new Vector3(movementVector.x, 0, movementVector.y) * playerSpeed;
+            //Debug.Log(new Vector3(movementVector.x, 0, movementVector.y) * playerSpeed);
+            playerRigidbody.AddForce(new Vector3(movementVector.x, 0, movementVector.y) * playerSpeed, ForceMode.Force);
+
+        }
 
         // Checking for interactable objects infront of the player
         Vector3 origin = transform.position - new Vector3(0, 0.2f, 0);
@@ -85,15 +93,62 @@ public class PlayerController : MonoBehaviour
 
     public void Movement(InputAction.CallbackContext context)
     {
-        //Debug.Log(context);
-        Vector2 movementVector = context.ReadValue<Vector2>();
-       // Debug.Log(movementVector);
-        playerRigidbody.AddForce(new Vector3(movementVector.x, 0, movementVector.y) * playerSpeed, ForceMode.Force);
+        if (PlayerManager.Instance.InMenu && hasScrolled == false)
+        {
+            Vector2 movementVector = context.ReadValue<Vector2>();
+
+            // Check for up direction
+            if (movementVector == Vector2.up)
+            {
+                PlayerManager.Instance.bookObject.GetComponent<BookInteractions>().ScrollBook(true);
+                hasScrolled = true;
+                Debug.Log("Up");
+            }
+            // Check for down direction
+            else if (movementVector == Vector2.down)
+            {
+                Debug.Log("down");
+                PlayerManager.Instance.bookObject.GetComponent<BookInteractions>().ScrollBook(false);
+                hasScrolled = true;
+            }
+            // Check for left direction
+            else if (movementVector == Vector2.left)
+            {
+                Debug.Log("left");
+
+            }
+            // Check for right direction
+            else if (movementVector == Vector2.right)
+            {
+                Debug.Log("right");
+
+            }
+        }
+        else if (PlayerManager.Instance.InMenu && hasScrolled)
+        {
+            Vector2 movementVector = context.ReadValue<Vector2>();
+            if (movementVector == Vector2.zero)
+            {
+                // reset scroll bool
+                hasScrolled = false;
+            }
+        }
+        else
+        {
+            //Debug.Log(context);
+            Vector2 movementVector = context.ReadValue<Vector2>();
+           // Debug.Log(movementVector);
+            //playerRigidbody.AddForce(new Vector3(movementVector.x, 0, movementVector.y) * playerSpeed, ForceMode.Force);
+        }
 
     }
 
     public void Rotation(InputAction.CallbackContext context)
     {
+        // No rotation in menu
+        if (PlayerManager.Instance.InMenu)
+            return;
+
        // Debug.Log(context.phase);
         if (context.performed)
         {
@@ -112,43 +167,52 @@ public class PlayerController : MonoBehaviour
 
     public void Interact(InputAction.CallbackContext context)
     {
-        //Debug.Log(context);
-        if (context.performed)
+        if (PlayerManager.Instance.InMenu)
         {
-            Debug.Log("Player Interacting");
-            if (interactableCustomer != null)
-            {
-                interactableCustomer.GetComponent<AICustomer>().ServeCustomer(gameObject);
-            }
-            else if (interactableObject != null)
-            {
-                Debug.Log("Before" + ingredientObject);
-                Debug.Log("Before" + plateObject);
-                interactableObject.GetComponent<InteractBase>().Interact(gameObject);
-                Debug.Log("After" + ingredientObject);
-                Debug.Log("After" + plateObject);
 
-            }
         }
-        else if (context.canceled)
+        else
         {
-            if (interactableObject != null)
+            //Debug.Log(context);
+            if (context.performed)
             {
-                interactableObject.GetComponent<InteractBase>().InteractEnd();
-            }
+                Debug.Log("Player Interacting");
+                if (interactableCustomer != null)
+                {
+                    interactableCustomer.GetComponent<AICustomer>().ServeCustomer(gameObject);
+                }
+                else if (interactableObject != null)
+                {
+                    Debug.Log("Before" + ingredientObject);
+                    Debug.Log("Before" + plateObject);
+                    interactableObject.GetComponent<InteractBase>().Interact(gameObject);
+                    Debug.Log("After" + ingredientObject);
+                    Debug.Log("After" + plateObject);
 
+                }
+            }
+            else if (context.canceled)
+            {
+                if (interactableObject != null)
+                {
+                    interactableObject.GetComponent<InteractBase>().InteractEnd();
+                }
+            }
         }
     }
 
     public void UIBack(InputAction.CallbackContext context)
     {
         if (context.performed)
-        { 
+        {
             // if active
             if (PlayerManager.Instance.bookObject.activeSelf)
             {
                 PlayerManager.Instance.bookObject.SetActive(false);
+                PlayerManager.Instance.InMenu = false;
             }
+
+            // Debug.Log(context.action);
         }
     }
 

@@ -26,6 +26,9 @@ public class BookInteractions : MonoBehaviour
     public Transform GlossaryButtonContainer;
     public GameObject GlossaryButton;
 
+    [System.NonSerialized] public int activeButton = 0;
+    [System.NonSerialized] public List<GameObject> ListOfButtons = new List<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +49,38 @@ public class BookInteractions : MonoBehaviour
             buttonScript.title = JsonUtility.FromJson<dataFormat>(File.ReadAllText(file)).title;
             buttonScript.interactions = this;
             buttonScript.Init();
+
+            ListOfButtons.Add(btnGlossary);
+        }
+
+        activeButton = 0;
+        ListOfButtons[0].GetComponent<GlossaryButton>().myText.text = "> " + ListOfButtons[0].GetComponent<GlossaryButton>().title;
+    }
+    
+    public void ScrollBook(bool Up)
+    {
+        if (Up)
+        {
+            // cant go above 0
+            if (activeButton <= 0)
+            {
+                return;
+            }
+            ListOfButtons[activeButton].GetComponent<GlossaryButton>().myText.text = ListOfButtons[activeButton].GetComponent<GlossaryButton>().title;
+            activeButton--;
+            ListOfButtons[activeButton].GetComponent<GlossaryButton>().myText.text = "> " + ListOfButtons[activeButton].GetComponent<GlossaryButton>().title;
+        }
+        else
+        {
+            // cant go below the max number
+            if (activeButton >= ListOfButtons.Count - 1)
+            {
+                return;
+            }
+            ListOfButtons[activeButton].GetComponent<GlossaryButton>().myText.text = ListOfButtons[activeButton].GetComponent<GlossaryButton>().title;
+            activeButton++;
+            ListOfButtons[activeButton].GetComponent<GlossaryButton>().myText.text = "> " + ListOfButtons[activeButton].GetComponent<GlossaryButton>().title;
+
         }
     }
 

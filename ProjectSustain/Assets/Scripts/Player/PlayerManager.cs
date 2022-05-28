@@ -44,6 +44,9 @@ public class PlayerManager : SingletonBase<PlayerManager>
 
     private PlayerInputManager inputManager;
 
+    [System.NonSerialized] public bool InMenu = false;
+    [System.NonSerialized] public int playerID;
+
     // For testing setting spawn on creating
     // Ideally will be handled by a scene management script instead of the player manager since spawn locations will
     // be different depending on map, scene, etc
