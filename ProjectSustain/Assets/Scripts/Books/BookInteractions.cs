@@ -84,6 +84,11 @@ public class BookInteractions : MonoBehaviour
         }
     }
 
+    public void ToggleBook()
+    {
+        ListOfButtons[activeButton].GetComponent<GlossaryButton>().onButtonClick();
+    }
+
     public void moveToEntry(string file)
     {
         currentPage = 0;
