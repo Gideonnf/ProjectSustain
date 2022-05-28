@@ -122,9 +122,9 @@
                 },
                 {
                     "name": "",
-                    "id": "fd6bb516-f07b-4c99-8c49-9d011815b4f6",
+                    "id": "71845685-d729-4382-83bb-4fca27adc10d",
                     "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "",
                     "action": "UI",
