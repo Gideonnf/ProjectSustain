@@ -680,6 +680,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e46dc2a4e4abaaa499c0f6085fd88fda, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 6833827392301588210, guid: 2f9d23fd73b4eae42b55db241c213fab, type: 3}
     - target: {fileID: 919132149155446097, guid: e46dc2a4e4abaaa499c0f6085fd88fda, type: 3}
       propertyPath: m_Name
       value: bookstand
@@ -980,7 +984,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -5004044949739458277, guid: 014b990423e276148bd8ee1ac22e88cc, type: 3}
+  - {fileID: -5004044949739458277, guid: daeb0aefc53b2c5409f87f577b0aea21, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3911,7 +3915,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -5004044949739458277, guid: 014b990423e276148bd8ee1ac22e88cc, type: 3}
+  - {fileID: -5004044949739458277, guid: daeb0aefc53b2c5409f87f577b0aea21, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4608,9 +4612,9 @@ RectTransform:
   m_Father: {fileID: 83547489}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -633, y: 360}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -337, y: 194}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1325036500
@@ -4817,7 +4821,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 6719245597448002910, guid: 014b990423e276148bd8ee1ac22e88cc, type: 3}
+  - {fileID: 6719245597448002910, guid: daeb0aefc53b2c5409f87f577b0aea21, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6259,9 +6263,9 @@ RectTransform:
   m_Father: {fileID: 83547489}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -635, y: 324}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -339, y: 158}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1786277702
@@ -6546,7 +6550,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 6719245597448002910, guid: 014b990423e276148bd8ee1ac22e88cc, type: 3}
+  - {fileID: 6719245597448002910, guid: daeb0aefc53b2c5409f87f577b0aea21, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7371,6 +7375,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1701551651}
     m_Modifications:
+    - target: {fileID: 415991278325888446, guid: bb28113f83b08fc4686c0cef42c63d80, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -5004044949739458277, guid: daeb0aefc53b2c5409f87f577b0aea21, type: 3}
     - target: {fileID: 795963704697321288, guid: bb28113f83b08fc4686c0cef42c63d80, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -7423,6 +7431,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2461663774455015062, guid: bb28113f83b08fc4686c0cef42c63d80, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 6719245597448002910, guid: daeb0aefc53b2c5409f87f577b0aea21, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb28113f83b08fc4686c0cef42c63d80, type: 3}
 --- !u!1 &919132148231293871 stripped
