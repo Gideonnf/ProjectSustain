@@ -169,7 +169,11 @@ public class PlayerController : MonoBehaviour
     {
         if (PlayerManager.Instance.InMenu)
         {
-
+            // If it is not in an entry page
+            if (!PlayerManager.Instance.bookObject.GetComponent<BookInteractions>().inEntry)
+            {
+                PlayerManager.Instance.bookObject.GetComponent<BookInteractions>().ToggleEntry();
+            }
         }
         else
         {
@@ -205,12 +209,24 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-            // if active
-            if (PlayerManager.Instance.bookObject.activeSelf)
+            if (PlayerManager.Instance.bookObject.GetComponent<BookInteractions>().inEntry)
             {
-                PlayerManager.Instance.bookObject.SetActive(false);
-                PlayerManager.Instance.InMenu = false;
+                PlayerManager.Instance.bookObject.GetComponent<BookInteractions>().returnToGlossary();
             }
+            else if (!PlayerManager.Instance.bookObject.GetComponent<BookInteractions>().inEntry)
+            {
+                if (PlayerManager.Instance.bookObject.activeSelf)
+                {
+                    PlayerManager.Instance.bookObject.SetActive(false);
+                    PlayerManager.Instance.InMenu = false;
+                }
+            }
+            //// if active
+            //if (PlayerManager.Instance.bookObject.activeSelf)
+            //{
+            //    PlayerManager.Instance.bookObject.SetActive(false);
+            //    PlayerManager.Instance.InMenu = false;
+            //}
 
             // Debug.Log(context.action);
         }

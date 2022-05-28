@@ -28,6 +28,7 @@ public class BookInteractions : MonoBehaviour
 
     [System.NonSerialized] public int activeButton = 0;
     [System.NonSerialized] public List<GameObject> ListOfButtons = new List<GameObject>();
+    [System.NonSerialized] public bool inEntry = false;
 
     // Start is called before the first frame update
     void Start()
@@ -84,13 +85,14 @@ public class BookInteractions : MonoBehaviour
         }
     }
 
-    public void ToggleBook()
+    public void ToggleEntry()
     {
         ListOfButtons[activeButton].GetComponent<GlossaryButton>().onButtonClick();
     }
 
     public void moveToEntry(string file)
     {
+        inEntry = true;
         currentPage = 0;
         GlossaryObject.SetActive(false);
         ContentObject.SetActive(true);
@@ -110,7 +112,7 @@ public class BookInteractions : MonoBehaviour
     {
         GlossaryObject.SetActive(true);
         ContentObject.SetActive(false);
-
+        inEntry = false;
     }
 
     public void importData()
