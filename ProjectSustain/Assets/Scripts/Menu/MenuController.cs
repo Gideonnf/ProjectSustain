@@ -42,6 +42,8 @@ public class MenuController : MonoBehaviour
     public void Awake()
     {
         GetScoreboardData();
+        isLerping = true;
+        lerpTo = mainmenuPosRot.transform;
     }
 
     public void Start()
