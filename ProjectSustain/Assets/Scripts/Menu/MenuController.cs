@@ -8,11 +8,9 @@ public class MenuController : MonoBehaviour
     public GameObject camera;
     public GameObject optionsPosRot;
     public GameObject mainmenuPosRot;
-    public GameObject prestartPosRot;
     public GameObject leaderboardsPosRot;
 
     public GameObject mainmenuholder;
-    public GameObject prestartmenuholder;
     public GameObject optionsmenuholder;
     public GameObject leaderboardsmenuholder;
 
@@ -46,7 +44,6 @@ public class MenuController : MonoBehaviour
             isLerping = true;
             lerpTo = mainmenuPosRot.transform;
             optionsmenuholder.SetActive(false);
-            prestartmenuholder.SetActive(false);
         }   
         if(camera==null)
         {
@@ -61,12 +58,6 @@ public class MenuController : MonoBehaviour
     
     public void onStartGameButtonClicked()
     {
-        Debug.Log("GAME START");
-        isLerping = true;
-        lerpTo = prestartPosRot.transform;
-        movespeed = 4;
-        rotspeed = 2;
-        prestartmenuholder.SetActive(true);
     }
 
     public void onLeaderboardsButtonClicked()
@@ -75,16 +66,6 @@ public class MenuController : MonoBehaviour
         lerpTo = leaderboardsPosRot.transform;
         movespeed = 4;
         rotspeed = 2;
-        prestartmenuholder.SetActive(true);
-    }
-
-    public void onStartMultiplayer()
-    {
-
-    }
-    public void onStartSinglePlayer()
-    {
-
     }
 
     public void onOptionsButtonClicked()
