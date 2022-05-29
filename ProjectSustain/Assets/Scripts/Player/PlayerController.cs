@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (PlayerManager.Instance.freezeMovement == true)
+        if (PlayerManager.Instance.freezeMovement == false)
         {
             Vector2 movementVector = movement.ReadValue<Vector2>();
             //Debug.Log(movementVector);
@@ -137,11 +137,36 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+        else if (PlayerManager.Instance.InMenu)
+        {
+            Vector2 movementVector = context.ReadValue<Vector2>();
+
+            // Can toggle volume
+            if (PlayerManager.Instance.currPage == PlayerManager.Page.Options)
+            {
+                if (movementVector == Vector2.left)
+                {
+                    PlayerManager.Instance.menuObject.GetComponent<MenuController>().volumeSlider.value--;
+                    AudioListener.volume = PlayerManager.Instance.menuObject.GetComponent<MenuController>().volumeSlider.value;
+                    Debug.Log("left");
+
+                }
+                // Check for right direction
+                else if (movementVector == Vector2.right)
+                {
+                    PlayerManager.Instance.menuObject.GetComponent<MenuController>().volumeSlider.value++;
+                    AudioListener.volume = PlayerManager.Instance.menuObject.GetComponent<MenuController>().volumeSlider.value;
+                    Debug.Log("right");
+
+                }
+
+            }
+        }
         else
         {
             //Debug.Log(context);
             Vector2 movementVector = context.ReadValue<Vector2>();
-           // Debug.Log(movementVector);
+            // Debug.Log(movementVector);
             //playerRigidbody.AddForce(new Vector3(movementVector.x, 0, movementVector.y) * playerSpeed, ForceMode.Force);
         }
 
@@ -218,17 +243,21 @@ public class PlayerController : MonoBehaviour
             {
                 case PlayerManager.Page.Leaderboard:
                     {
+                        PlayerManager.Instance.menuObject.GetComponent<MenuController>().LerpMenu();
+                        PlayerManager.Instance.currPage = PlayerManager.Page.MainMenu;
 
                         break;
                     }
                 case PlayerManager.Page.Options:
                     {
+                        PlayerManager.Instance.menuObject.GetComponent<MenuController>().LerpMenu();
+                        PlayerManager.Instance.currPage = PlayerManager.Page.MainMenu;
 
                         break;
                     }
                 case PlayerManager.Page.MainMenu:
                     {
-
+                        // Quit game
                         break;
                     }
 
@@ -259,15 +288,28 @@ public class PlayerController : MonoBehaviour
 
     public void UIStartGame(InputAction.CallbackContext context)
     {
-
+        if (context.performed && PlayerManager.Instance.currPage == PlayerManager.Page.MainMenu)
+        {
+            PlayerManager.Instance.menuObject.GetComponent<MenuController>().onStartGameButtonClicked();
+        }
     }
 
     public void UILeaderboards(InputAction.CallbackContext context)
     {
-
+        if (context.performed && PlayerManager.Instance.currPage == PlayerManager.Page.MainMenu)
+        {
+            PlayerManager.Instance.menuObject.GetComponent<MenuController>().onLeaderboardsButtonClicked();
+            PlayerManager.Instance.currPage = PlayerManager.Page.Leaderboard;
+        }
     }
     public void UIOptions(InputAction.CallbackContext context)
     {
+        if (context.performed && PlayerManager.Instance.currPage == PlayerManager.Page.MainMenu)
+        {
+            PlayerManager.Instance.menuObject.GetComponent<MenuController>().onOptionsButtonClicked();
+            PlayerManager.Instance.currPage = PlayerManager.Page.Options;
+
+        }
 
     }
 }

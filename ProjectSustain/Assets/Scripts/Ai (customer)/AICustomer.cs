@@ -23,6 +23,9 @@ public class AICustomer : MonoBehaviour
 
     void Update()
     {
+        if (PlayerManager.Instance.gameEnd)
+            return;
+
         //MoveAgent();
         if (isOrdering && foodOrder != null)
         {

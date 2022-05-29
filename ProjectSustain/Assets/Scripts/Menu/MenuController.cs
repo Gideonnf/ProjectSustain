@@ -60,6 +60,12 @@ public class MenuController : MonoBehaviour
             fullscreenToggleText.text = "WINDOWED";
         }
     }
+    public void LerpMenu()
+    {
+        isLerping = true;
+        lerpTo = mainmenuPosRot.transform;
+        optionsmenuholder.SetActive(false);
+    }
 
     public void Update()
     {
@@ -82,6 +88,18 @@ public class MenuController : MonoBehaviour
     
     public void onStartGameButtonClicked()
     {
+        PlayerManager.Instance.freezeMovement = false;
+        PlayerManager.Instance.InMenu = false;
+
+        gameObject.SetActive(false);
+    }
+
+    public void EndGame()
+    {
+        gameObject.SetActive(true);
+        PlayerManager.Instance.freezeMovement = true;
+        PlayerManager.Instance.InMenu = true;
+
     }
 
     public void onLeaderboardsButtonClicked()

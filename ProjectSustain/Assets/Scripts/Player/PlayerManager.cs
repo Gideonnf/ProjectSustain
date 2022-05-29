@@ -40,6 +40,7 @@ public class PlayerManager : SingletonBase<PlayerManager>
     public GameObject scoreObject;
     public GameObject timeObject;
     public GameObject eventObjec;
+    public GameObject menuObject;
     public float currentScore;
     public Page currPage;
 
@@ -48,6 +49,7 @@ public class PlayerManager : SingletonBase<PlayerManager>
     Color positiveColor;
     Color negativeColor;
     bool eventText = false;
+    public bool gameEnd = false;
     float eventTimer = 0.0f;
 
     private PlayerInputManager inputManager;
@@ -72,6 +74,8 @@ public class PlayerManager : SingletonBase<PlayerManager>
     // Start is called before the first frame update
     void Start()
     {
+        InMenu = true;
+        freezeMovement = true;
         lightRef = controllableLight.GetComponent<Light>();
         positiveColor = scoreObject.GetComponent<TextMeshProUGUI>().color;
         negativeColor = timeObject.GetComponent<TextMeshProUGUI>().color;
@@ -80,7 +84,11 @@ public class PlayerManager : SingletonBase<PlayerManager>
     // Update is called once per frame
     void Update()
     {
-        gameTimer += Time.deltaTime;
+        if (InMenu == false)
+        {
+            gameTimer += Time.deltaTime;
+        }
+
         float scaledTime = gameTimer / gameTime;
         Vector3 currentRGB = new Vector3(255, lightRef.color.g, lightRef.color.b);
         Color newColor = lightRef.color;
@@ -101,6 +109,30 @@ public class PlayerManager : SingletonBase<PlayerManager>
                 eventText = false;
                 eventObjec.SetActive(false);
             }
+        }
+
+        // Game end
+        if (gameTimer >= gameTime)
+        {
+            gameEnd = true;
+            gameTimer = 0.0f;
+            EndGame();
+        }
+    }
+
+    void EndGame()
+    {
+        menuObject.GetComponent<MenuController>().EndGame();
+        //JUNHAO LOOK HERE
+        menuObject.GetComponent<MenuController>().GetScoreboardData();
+
+        AIManager.Instance.ResetAI();
+        //JUNHAO LOOK HERE
+        menuObject.GetComponent<FireBaseInteraction>().WriteScores(currentScore);
+        //reset their position
+        for (int i = 0; i < playerList.Count; ++i)
+        {
+            playerList[i].playerInput.gameObject.transform.position = ListOfSpawns[i].position;
         }
     }
 

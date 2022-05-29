@@ -50,6 +50,9 @@ public class AIManager : SingletonBase<AIManager>
             TestAIFinish(0);
         }
 
+        if (PlayerManager.Instance.InMenu)
+            return;
+
         if (roundStart == false)
         {
             waitingTimer += Time.deltaTime;
@@ -217,6 +220,16 @@ public class AIManager : SingletonBase<AIManager>
         GetAvailAgent();
     }
 
-    
+    public void ResetAI()
+    {
+        for (int i = 0; i < ListOfAgents.Count; ++i)
+        {
+            //ListOfAgents[i].availability = false;
+            ListOfAgents[i].ai.GetComponent<AICustomer>().MoveAgent(exitPoint.position);
+        }
+
+        TableManager.Instance.ResetTables();
+    }
+
 }
 

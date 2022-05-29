@@ -56,6 +56,14 @@ public class TableManager : SingletonBase<TableManager>
         //}
     }
 
+    public void ResetTables()
+    {
+        for(int i = 0; i < ListOfTables.Count; i++)
+        {
+            ListOfTables[i].availability = true;
+        }
+    }
+
     public void GetAvailPosition(GameObject targetTable)
     {
         for (int i = 0; i < ListOfTables.Count; i++)

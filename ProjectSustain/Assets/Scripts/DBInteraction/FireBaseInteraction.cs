@@ -52,14 +52,14 @@ public class FireBaseInteraction : MonoBehaviour
         firestore.Document(scorepath).SetAsync(playerData);
     }
 
-    public void WriteScores()
+    public void WriteScores(float score)
     {
 
         var playerData = new player_scores();
         playerData.p_id = 3;
         playerData.s_id = 1;
         playerData.s_level = 1;
-        playerData.s_score = 1000;
+        playerData.s_score = score;
 
         var firestore = FirebaseFirestore.DefaultInstance;
         firestore.Document(scorepath + "/" + playerData.p_id).SetAsync(playerData);

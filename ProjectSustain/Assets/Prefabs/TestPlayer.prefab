@@ -223,6 +223,54 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 8d5e5d1e-b7e7-4bc2-8d6b-611a1c7210ab
     m_ActionName: PlayerControl/UI[/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 325090743272778218}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: UIStartGame
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8322fab2-1c0e-4dc5-b934-402a1f8de165
+    m_ActionName: PlayerControl/StartGame
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 325090743272778218}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: UILeaderboards
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4b3db713-3c82-4da0-a928-84ba8c1a5917
+    m_ActionName: PlayerControl/Leaderboards
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 325090743272778218}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: UIOptions
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e1080813-ba9c-421d-bf91-c1e36fa57b96
+    m_ActionName: PlayerControl/Options
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad1
   m_DefaultActionMap: PlayerControl

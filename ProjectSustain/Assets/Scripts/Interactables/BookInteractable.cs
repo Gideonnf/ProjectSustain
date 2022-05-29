@@ -20,7 +20,7 @@ public class BookInteractable : InteractBase
         playerReference = playerObject;
         if (playerReference != null)
         {
-            PlayerManager.Instance.InMenu = true;
+            PlayerManager.Instance.InBook = true;
             PlayerManager.Instance.bookObject.SetActive(true);
             //GameObject playerHands = playerReference.GetComponent<PlayerController>().playerHand;
             //// Has an ingredient in hand
