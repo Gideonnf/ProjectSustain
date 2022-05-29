@@ -109,6 +109,8 @@ public class AICustomer : MonoBehaviour
 
                 foodBubble.SetActive(false);
                 MoveAgent(AIManager.Instance.exitPoint.position);
+                // 2110 is the carbon emmision for mush burger
+                PlayerManager.Instance.AddScore(2110);
 
                 Destroy(plate);
 

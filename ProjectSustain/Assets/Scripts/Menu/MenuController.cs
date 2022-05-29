@@ -67,6 +67,13 @@ public class MenuController : MonoBehaviour
         optionsmenuholder.SetActive(false);
     }
 
+    private void OnEnable()
+    {
+       //JUNHAO LOOK HERE
+       GetScoreboardData();
+
+    }
+
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))

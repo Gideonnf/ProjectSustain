@@ -123,12 +123,14 @@ public class PlayerManager : SingletonBase<PlayerManager>
     void EndGame()
     {
         menuObject.GetComponent<MenuController>().EndGame();
-        //JUNHAO LOOK HERE
-        menuObject.GetComponent<MenuController>().GetScoreboardData();
 
         AIManager.Instance.ResetAI();
         //JUNHAO LOOK HERE
         menuObject.GetComponent<FireBaseInteraction>().WriteScores(currentScore);
+
+        //JUNHAO LOOK HERE
+        menuObject.GetComponent<MenuController>().GetScoreboardData();
+
         //reset their position
         for (int i = 0; i < playerList.Count; ++i)
         {

@@ -89,8 +89,6 @@ public class PlateObject : MonoBehaviour
                     transform.GetChild(ingredientCounter).gameObject.SetActive(true);
                     //GetComponentInParent<ServingStation>().textObject.SetActive(true);
                     complete = true;
-                    // 2110 is the carbon emmision for mush burger
-                    PlayerManager.Instance.AddScore(2110);
 
                 }
                 Destroy(newIngredient);
