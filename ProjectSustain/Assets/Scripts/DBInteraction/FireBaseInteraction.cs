@@ -4,7 +4,7 @@ using UnityEngine;
 using Firebase.Firestore;
 using Firebase.Extensions;
 using UnityEngine.Assertions;
-
+using database;
 public class FireBaseInteraction : MonoBehaviour
 {
     public string progresspath = "progress";
@@ -15,22 +15,26 @@ public class FireBaseInteraction : MonoBehaviour
     public void ReadData()
     {
         var firestore = FirebaseFirestore.DefaultInstance;
-        firestore.Document(playerpath+key).GetSnapshotAsync().ContinueWithOnMainThread(task =>
-        {
-            Assert.IsNull(task.Exception);
+        firestore.Document(playerpath + key).GetSnapshotAsync().ContinueWithOnMainThread(task =>
+          {
+              Assert.IsNull(task.Exception);
 
-            var playerData = task.Result.ConvertTo<player_scores>();
-        });
+              var playerData = task.Result.ConvertTo<player_scores>();
+          });
     }
 
     public async void getScoreboardData()
     {
         var firestore = FirebaseFirestore.DefaultInstance;
-        firestore.Collection("score").GetSnapshotAsync().ContinueWithOnMainThread(task =>
+        firestore.Collection(scorepath).GetSnapshotAsync().ContinueWithOnMainThread(task =>
         {
             Assert.IsNull(task.Exception);
 
-            //task.Result.ConvertTo<List<player_scores>>();
+            foreach (var playerdata in task.Result)
+            {
+                var converted_data = playerdata.ConvertTo<player_scores>();
+                Debug.Log(converted_data.p_id);
+            }
         });
         //Query scoresQuery = firestore.Collection("scores");
         //QuerySnapshot scoresQuerySnapshot = scoresQuery.GetSnapshotAsync();
@@ -58,12 +62,12 @@ public class FireBaseInteraction : MonoBehaviour
         playerData.s_score = 1000;
 
         var firestore = FirebaseFirestore.DefaultInstance;
-        firestore.Document(scorepath+"/"+playerData.p_id).SetAsync(playerData);
+        firestore.Document(scorepath + "/" + playerData.p_id).SetAsync(playerData);
     }
 
     public int login(string key = null, string password = null)
     {
-        if(key == null || password == null)
+        if (key == null || password == null)
         {
             return -1;
         }
@@ -87,8 +91,9 @@ public class FireBaseInteraction : MonoBehaviour
         return -1;
 
     }
+}
 
-
+namespace database {
     [FirestoreData]
     public struct player_progress
     {
@@ -121,6 +126,7 @@ public class FireBaseInteraction : MonoBehaviour
         public string p_password { get; set; }
     }
 
+    [System.Serializable]
     [FirestoreData]
     public struct player_scores
     {
@@ -136,5 +142,6 @@ public class FireBaseInteraction : MonoBehaviour
         [FirestoreProperty]
         public float s_score { get; set; }
     }
-
 }
+
+

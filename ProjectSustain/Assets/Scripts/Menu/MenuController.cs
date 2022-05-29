@@ -3,8 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine;
+using Firebase.Firestore;
+using Firebase.Extensions;
+using UnityEngine.Assertions;
+using database;
+
 public class MenuController : MonoBehaviour
 {
+
+    public string progresspath = "progress";
+    public string playerpath = "players";
+    public string scorepath = "scores";
+    public string key = "key";
+
     public GameObject camera;
     public GameObject optionsPosRot;
     public GameObject mainmenuPosRot;
@@ -21,6 +33,16 @@ public class MenuController : MonoBehaviour
 
     public float movespeed;
     public float rotspeed;
+
+    public List<TMP_Text> nametext;
+    public List<TMP_Text> scoretext;
+
+    public List<player_scores> scores = new List<player_scores>();
+
+    public void Awake()
+    {
+        GetScoreboardData();
+    }
 
     public void Start()
     {
@@ -62,6 +84,7 @@ public class MenuController : MonoBehaviour
 
     public void onLeaderboardsButtonClicked()
     {
+        putscoreboarddata();
         isLerping = true;
         lerpTo = leaderboardsPosRot.transform;
         movespeed = 4;
@@ -116,5 +139,47 @@ public class MenuController : MonoBehaviour
             lerpTo = null;
         }
     }
+
+
+    public async void GetScoreboardData()
+    {
+        Debug.Log("getting score");
+        scores.Clear();
+        var firestore = FirebaseFirestore.DefaultInstance;
+        firestore.Collection(scorepath).GetSnapshotAsync().ContinueWithOnMainThread(task =>
+        {
+            Assert.IsNull(task.Exception);
+
+            foreach (var playerdata in task.Result)
+            {
+                player_scores converted_data = playerdata.ConvertTo<player_scores>();
+                scores.Add(converted_data);
+                Debug.Log(scores.Count);
+            }
+        });
+
+        
+        
+    }
+
+    public void putscoreboarddata()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            Debug.Log(scores.Count + "|" + i.ToString());
+            if (scores.Count > i)
+            {
+                Debug.Log("insert");
+                scoretext[i].SetText(scores[i].s_score.ToString());
+                nametext[i].SetText(scores[i].p_id.ToString());
+            }
+            else
+            {
+                scoretext[i].SetText("---");
+                nametext[i].SetText("---");
+            }
+        }
+    }
+
 
 }
