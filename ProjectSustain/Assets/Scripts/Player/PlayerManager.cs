@@ -5,13 +5,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using System;
-
+using database;
+using Firebase.Firestore;
+using Firebase.Extensions;
 public class PlayerObject
 {
     // Stores a reference to the input component
     public PlayerInput playerInput;
     // Stores reference to the index of the player
-
     public int playerIndex;
     
     public PlayerObject (PlayerInput input)
@@ -122,10 +123,27 @@ public class PlayerManager : SingletonBase<PlayerManager>
         }
     }
 
+    //temporarily put here
+    public string scorepath = "scores";
+    public void WriteScores(float score)
+    {
+        Int32 key = (Int32)(DateTime.Now.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+        var playerData = new player_scores();
+        playerData.p_id = 1;
+        playerData.s_id = key;
+        playerData.s_level = 1;
+        playerData.s_score = score;
+
+        var firestore = FirebaseFirestore.DefaultInstance;
+        firestore.Document(scorepath + "/" + key).SetAsync(playerData);
+    }
+
+
     void EndGame()
     {
         menuObject.GetComponent<MenuController>().EndGame();
 
+        WriteScores(currentScore);
         AIManager.Instance.ResetAI();
         //JUNHAO LOOK HERE
 
@@ -138,6 +156,8 @@ public class PlayerManager : SingletonBase<PlayerManager>
             playerList[i].playerInput.gameObject.transform.position = ListOfSpawns[i].position;
         }
     }
+
+
 
     /// <summary>
     /// For adding players to the game

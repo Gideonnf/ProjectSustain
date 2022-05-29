@@ -46,6 +46,8 @@ public class MenuController : MonoBehaviour
         lerpTo = mainmenuPosRot.transform;
     }
 
+
+
     public void Start()
     {
         movespeed = 1;
