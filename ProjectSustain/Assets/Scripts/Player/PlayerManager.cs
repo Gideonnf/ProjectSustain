@@ -21,6 +21,13 @@ public class PlayerObject
 
 public class PlayerManager : SingletonBase<PlayerManager>
 {
+    public enum Page
+    {
+        MainMenu,
+        Leaderboard,
+        Options
+    };
+
     [Tooltip("The prefab of the player that will be created depending on players playing")]
     public GameObject playerBase;
 
@@ -34,6 +41,7 @@ public class PlayerManager : SingletonBase<PlayerManager>
     public GameObject timeObject;
     public GameObject eventObjec;
     public float currentScore;
+    public Page currPage;
 
     Light lightRef;
     float gameTimer = 0.0f;
@@ -44,6 +52,8 @@ public class PlayerManager : SingletonBase<PlayerManager>
 
     private PlayerInputManager inputManager;
 
+    public bool freezeMovement = false;
+    [System.NonSerialized] public bool InBook = false;
     [System.NonSerialized] public bool InMenu = false;
     [System.NonSerialized] public int playerID;
 

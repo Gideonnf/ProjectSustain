@@ -6,6 +6,8 @@ using UnityEngine.InputSystem.Utilities;
 
 public class PlayerController : MonoBehaviour
 {
+
+
     public GameObject playerHand;
     public PlayerInput playerInput;
 
@@ -23,7 +25,6 @@ public class PlayerController : MonoBehaviour
 
 
     bool hasScrolled = false;
-
     
     private void Awake()
     {
@@ -41,7 +42,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (PlayerManager.Instance.InMenu == false)
+        if (PlayerManager.Instance.freezeMovement == true)
         {
             Vector2 movementVector = movement.ReadValue<Vector2>();
             //Debug.Log(movementVector);
@@ -93,7 +94,7 @@ public class PlayerController : MonoBehaviour
 
     public void Movement(InputAction.CallbackContext context)
     {
-        if (PlayerManager.Instance.InMenu && hasScrolled == false)
+        if (PlayerManager.Instance.InBook && hasScrolled == false)
         {
             Vector2 movementVector = context.ReadValue<Vector2>();
 
@@ -124,13 +125,16 @@ public class PlayerController : MonoBehaviour
 
             }
         }
-        else if (PlayerManager.Instance.InMenu && hasScrolled)
+        else if (PlayerManager.Instance.InBook)
         {
-            Vector2 movementVector = context.ReadValue<Vector2>();
-            if (movementVector == Vector2.zero)
+            if (hasScrolled)
             {
-                // reset scroll bool
-                hasScrolled = false;
+                Vector2 movementVector = context.ReadValue<Vector2>();
+                if (movementVector == Vector2.zero)
+                {
+                    // reset scroll bool
+                    hasScrolled = false;
+                }
             }
         }
         else
@@ -146,7 +150,7 @@ public class PlayerController : MonoBehaviour
     public void Rotation(InputAction.CallbackContext context)
     {
         // No rotation in menu
-        if (PlayerManager.Instance.InMenu)
+        if (PlayerManager.Instance.InBook)
             return;
 
        // Debug.Log(context.phase);
@@ -167,7 +171,7 @@ public class PlayerController : MonoBehaviour
 
     public void Interact(InputAction.CallbackContext context)
     {
-        if (PlayerManager.Instance.InMenu)
+        if (PlayerManager.Instance.InBook)
         {
             // If it is not in an entry page
             if (!PlayerManager.Instance.bookObject.GetComponent<BookInteractions>().inEntry)
@@ -207,8 +211,28 @@ public class PlayerController : MonoBehaviour
 
     public void UIBack(InputAction.CallbackContext context)
     {
+       // Debug.Log(context.interaction);
         if (context.performed)
         {
+            switch(PlayerManager.Instance.currPage)
+            {
+                case PlayerManager.Page.Leaderboard:
+                    {
+
+                        break;
+                    }
+                case PlayerManager.Page.Options:
+                    {
+
+                        break;
+                    }
+                case PlayerManager.Page.MainMenu:
+                    {
+
+                        break;
+                    }
+
+            }
             if (PlayerManager.Instance.bookObject.GetComponent<BookInteractions>().inEntry)
             {
                 PlayerManager.Instance.bookObject.GetComponent<BookInteractions>().returnToGlossary();
@@ -218,9 +242,10 @@ public class PlayerController : MonoBehaviour
                 if (PlayerManager.Instance.bookObject.activeSelf)
                 {
                     PlayerManager.Instance.bookObject.SetActive(false);
-                    PlayerManager.Instance.InMenu = false;
+                    PlayerManager.Instance.InBook = false;
                 }
             }
+           
             //// if active
             //if (PlayerManager.Instance.bookObject.activeSelf)
             //{
@@ -232,4 +257,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void UIStartGame(InputAction.CallbackContext context)
+    {
+
+    }
+
+    public void UILeaderboards(InputAction.CallbackContext context)
+    {
+
+    }
+    public void UIOptions(InputAction.CallbackContext context)
+    {
+
+    }
 }
