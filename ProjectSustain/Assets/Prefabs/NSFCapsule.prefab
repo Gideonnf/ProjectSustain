@@ -255,6 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 5475930185137205387}
   foodBubble: {fileID: 6160907574816099952}
+  waitingTime: 10
 --- !u!1 &6160907574816099952
 GameObject:
   m_ObjectHideFlags: 0

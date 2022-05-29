@@ -40,6 +40,7 @@ public class TableManager : SingletonBase<TableManager>
         //}
 
         GetAvailPosition(TableManager);
+        LoadTables();
     }
 
     public void LoadTables()
@@ -49,10 +50,10 @@ public class TableManager : SingletonBase<TableManager>
 
     public void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            LoadTables();
-        }
+        //if(Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    LoadTables();
+        //}
     }
 
     public void GetAvailPosition(GameObject targetTable)

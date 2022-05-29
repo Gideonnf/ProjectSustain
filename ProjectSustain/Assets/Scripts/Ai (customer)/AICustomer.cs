@@ -6,11 +6,14 @@ using UnityEngine.UI;
 public class AICustomer : MonoBehaviour
 {
     public NavMeshAgent agent;
+    [System.NonSerialized] public int aiID = 0;
     [System.NonSerialized] public FoodItem foodOrder = null;
     [System.NonSerialized] public bool isFinished = false;
     [System.NonSerialized] public bool isServed = false;
     public GameObject foodBubble;
     [System.NonSerialized] public bool isOrdering;
+    public float waitingTime;
+    float waitingTimer;
     float timer;
 
     // TO NOTE
@@ -29,6 +32,21 @@ public class AICustomer : MonoBehaviour
                 // AI leaves
             }
 
+        }
+        // no longer ordering and is served
+        else if (isOrdering == false && isServed)
+        {
+            //if (isServed)
+            //{
+
+            //}
+            waitingTimer += Time.deltaTime;
+            if (waitingTimer > waitingTime)
+            {
+                isServed = false;
+                waitingTimer = 0.0f;
+                AIManager.Instance.RequeueAI(aiID);
+            }
         }
 
 

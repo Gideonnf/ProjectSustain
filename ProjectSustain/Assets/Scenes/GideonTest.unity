@@ -4111,6 +4111,9 @@ MonoBehaviour:
   waitingPoint: {fileID: 961576764}
   exitPoint: {fileID: 743173401}
   newPosition: {x: 0, y: 0, z: 0}
+  waitingTime: 4
+  roundStart: 0
+  customerInQueue: 0
 --- !u!4 &1005372042
 Transform:
   m_ObjectHideFlags: 0
@@ -7433,9 +7436,9 @@ RectTransform:
   m_Father: {fileID: 83547489}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 348, y: 352}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -280, y: -16}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &2136426365
