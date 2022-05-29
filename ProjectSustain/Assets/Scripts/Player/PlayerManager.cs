@@ -4,12 +4,14 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using System;
 
 public class PlayerObject
 {
     // Stores a reference to the input component
     public PlayerInput playerInput;
     // Stores reference to the index of the player
+
     public int playerIndex;
     
     public PlayerObject (PlayerInput input)
@@ -126,7 +128,6 @@ public class PlayerManager : SingletonBase<PlayerManager>
 
         AIManager.Instance.ResetAI();
         //JUNHAO LOOK HERE
-        menuObject.GetComponent<FireBaseInteraction>().WriteScores(currentScore);
 
         //JUNHAO LOOK HERE
         menuObject.GetComponent<MenuController>().GetScoreboardData();

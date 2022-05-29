@@ -67,12 +67,6 @@ public class MenuController : MonoBehaviour
         optionsmenuholder.SetActive(false);
     }
 
-    private void OnEnable()
-    {
-       //JUNHAO LOOK HERE
-       GetScoreboardData();
-
-    }
 
     public void Update()
     {
@@ -191,6 +185,7 @@ public class MenuController : MonoBehaviour
 
     public void putscoreboarddata()
     {
+        Debug.Log(scores.Count);
         for (int i = 0; i < 5; i++)
         {
             Debug.Log(scores.Count + "|" + i.ToString());
@@ -198,7 +193,7 @@ public class MenuController : MonoBehaviour
             {
                 Debug.Log("insert");
                 scoretext[i].SetText(scores[i].s_score.ToString());
-                nametext[i].SetText(scores[i].p_id.ToString());
+                nametext[i].SetText(scores[i].s_id.ToString());
             }
             else
             {

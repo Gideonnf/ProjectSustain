@@ -5,6 +5,8 @@ using Firebase.Firestore;
 using Firebase.Extensions;
 using UnityEngine.Assertions;
 using database;
+using System;
+
 public class FireBaseInteraction : MonoBehaviour
 {
     public string progresspath = "progress";
@@ -54,15 +56,16 @@ public class FireBaseInteraction : MonoBehaviour
 
     public void WriteScores(float score)
     {
+        Int32 key = (Int32)(DateTime.Now.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
 
         var playerData = new player_scores();
-        playerData.p_id = 3;
-        playerData.s_id = 1;
+        playerData.p_id = 1;
+        playerData.s_id = key;
         playerData.s_level = 1;
         playerData.s_score = score;
 
         var firestore = FirebaseFirestore.DefaultInstance;
-        firestore.Document(scorepath + "/" + playerData.p_id).SetAsync(playerData);
+        firestore.Document(scorepath + "/" + key).SetAsync(playerData);
     }
 
     public int login(string key = null, string password = null)
