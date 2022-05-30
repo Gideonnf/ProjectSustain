@@ -4862,7 +4862,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bDontDestroyOnLoad: 0
   playerBase: {fileID: 325090743272778224, guid: 2fefd5216a512d945843192ccf87e1a4, type: 3}
-  gameTime: 80
+  gameTime: 120
   controllableLight: {fileID: 1000611264}
   bookObject: {fileID: 571783657}
   scoreObject: {fileID: 1786277700}
@@ -4876,6 +4876,7 @@ MonoBehaviour:
   ListOfSpawns:
   - {fileID: 2019702190}
   - {fileID: 51001364}
+  scorepath: scores
 --- !u!114 &740618039
 MonoBehaviour:
   m_ObjectHideFlags: 0

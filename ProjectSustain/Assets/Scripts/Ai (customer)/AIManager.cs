@@ -110,6 +110,9 @@ public class AIManager : SingletonBase<AIManager>
 
     public void GetAvailAgent()
     {
+        if (PlayerManager.Instance.gameEnd)
+            return;
+
         for (int i = 0; i < TableManager.Instance.ListOfTables.Count; i++)
         {
             if (TableManager.Instance.ListOfTables[i].availability)

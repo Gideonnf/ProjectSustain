@@ -92,6 +92,11 @@ public class PlayerManager : SingletonBase<PlayerManager>
             gameTimer += Time.deltaTime;
         }
 
+        if (InMenu || InBook)
+            freezeMovement = true;
+        else
+            freezeMovement = false;
+
         float scaledTime = gameTimer / gameTime;
         Vector3 currentRGB = new Vector3(255, lightRef.color.g, lightRef.color.b);
         Color newColor = lightRef.color;
